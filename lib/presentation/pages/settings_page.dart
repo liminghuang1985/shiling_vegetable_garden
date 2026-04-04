@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/constants/enums.dart';
 import '../../data/data_seeder.dart';
-import '../../data/data_seeder.dart';
+import '../../data/datasources/database_helper.dart';
 import '../providers/providers.dart';
 
 /// 设置页
@@ -19,6 +19,32 @@ class SettingsPage extends ConsumerWidget {
       ),
       body: ListView(
         children: [
+
+          // DEBUG: Database state
+          FutureBuilder<List<String>>(
+            future: Future(() async {
+              final db = await DatabaseHelper.instance.database;
+              final vegCount = (await db.query('vegetables')).length;
+              final calCount = (await db.query('planting_calendar')).length;
+              final cityCount = (await db.query('cities')).length;
+              // Test query
+              final tropicalApril = await db.query(
+                'planting_calendar',
+                where: 'climate_zone = ? AND month = ?',
+                whereArgs: ['tropical', 4],
+                limit: 1,
+              );
+              return ['蔬菜:$vegCount', '日历:$calCount', '城市:$cityCount', '热带4月:${tropicalApril.length}行', tropicalApril.isNotEmpty ? 'IDs:${tropicalApril.first['vegetable_ids']}' : '无数据'];
+            }),
+            builder: (context, snapshot) {
+              return ListTile(
+                leading: Icon(Icons.bug_report, color: Colors.red),
+                title: Text('🔴 DEBUG数据库状态', style: TextStyle(color: Colors.red)),
+                subtitle: Text(snapshot.hasData ? snapshot.data!.join(' | ') : '加载中...'),
+              );
+            },
+          ),
+          Divider(),
           // 气候带设置
           ListTile(
             leading: const CircleAvatar(

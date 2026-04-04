@@ -24,9 +24,7 @@ class DataSeeder {
         await _seedVegetables();
         await _seedPlantingCalendar();
       }
-    } catch (e, st) {
-      print('=== DataSeeder ERROR: $e ===');
-      print('=== STACK: $st ===');
+    } catch (e) {
       // Continue anyway - don't crash the app
     }
   }

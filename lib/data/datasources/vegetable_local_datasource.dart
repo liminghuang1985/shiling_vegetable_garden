@@ -152,9 +152,14 @@ class VegetableLocalDatasource {
       limit: 1,
     );
 
-    if (maps.isEmpty) return [];
+    
+    if (maps.isEmpty) {
+      
+      return [];
+    }
 
     final vegIds = maps.first['vegetable_ids'] as String;
+    
     if (vegIds.isEmpty) return [];
     return vegIds.split(',');
   }

@@ -318,6 +318,7 @@ class _CitySelectionPageState extends ConsumerState<CitySelectionPage> {
     return InkWell(
       onTap: () {
         ref.read(selectedClimateZoneProvider.notifier).state = city.climate;
+        ref.invalidate(currentRecommendedVegetablesProvider);
         Navigator.pop(context);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
