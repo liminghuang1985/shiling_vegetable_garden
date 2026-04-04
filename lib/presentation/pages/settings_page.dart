@@ -7,11 +7,41 @@ import '../providers/providers.dart';
 import '../../data/datasources/settings_local_datasource.dart';
 
 /// 设置页
-class SettingsPage extends ConsumerWidget {
+class SettingsPage extends ConsumerStatefulWidget {
   const SettingsPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends ConsumerState<SettingsPage> {
+  bool _notificationsEnabled = true;
+  bool _reminderHarvest = true;
+  bool _reminderWater = true;
+  bool _reminderFertilize = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSettings();
+  }
+
+  Future<void> _loadSettings() async {
+    final settings = SettingsLocalDatasource();
+    final enabled = await settings.getNotificationsEnabled();
+    final reminders = await settings.getReminderSettings();
+    if (mounted) {
+      setState(() {
+        _notificationsEnabled = enabled;
+        _reminderHarvest = reminders['harvest']!;
+        _reminderWater = reminders['water']!;
+        _reminderFertilize = reminders['fertilize']!;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final selectedClimate = ref.watch(selectedClimateZoneProvider);
 
     return Scaffold(
@@ -21,31 +51,6 @@ class SettingsPage extends ConsumerWidget {
       body: ListView(
         children: [
 
-          // DEBUG: Database state
-          FutureBuilder<List<String>>(
-            future: Future(() async {
-              final db = await DatabaseHelper.instance.database;
-              final vegCount = (await db.query('vegetables')).length;
-              final calCount = (await db.query('planting_calendar')).length;
-              final cityCount = (await db.query('cities')).length;
-              // Test query
-              final tropicalApril = await db.query(
-                'planting_calendar',
-                where: 'climate_zone = ? AND month = ?',
-                whereArgs: ['tropical', 4],
-                limit: 1,
-              );
-              return ['蔬菜:$vegCount', '日历:$calCount', '城市:$cityCount', '热带4月:${tropicalApril.length}行', tropicalApril.isNotEmpty ? 'IDs:${tropicalApril.first['vegetable_ids']}' : '无数据'];
-            }),
-            builder: (context, snapshot) {
-              return ListTile(
-                leading: Icon(Icons.bug_report, color: Colors.red),
-                title: Text('🔴 DEBUG数据库状态', style: TextStyle(color: Colors.red)),
-                subtitle: Text(snapshot.hasData ? snapshot.data!.join(' | ') : '加载中...'),
-              );
-            },
-          ),
-          Divider(),
           // 气候带设置
           ListTile(
             leading: const CircleAvatar(
@@ -60,7 +65,35 @@ class SettingsPage extends ConsumerWidget {
 
           const Divider(),
 
-          // 通知设置
+          // 阳台朝向
+          ListTile(
+            leading: const CircleAvatar(
+              backgroundColor: Colors.teal,
+              child: Icon(Icons.wb_sunny, color: Colors.white),
+            ),
+            title: const Text('阳台朝向'),
+            subtitle: Text(_getBalconyLabel()),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => _showBalconyDirectionPicker(context, ref),
+          ),
+
+          const Divider(),
+
+          // 提醒设置
+          ListTile(
+            leading: const CircleAvatar(
+              backgroundColor: Colors.purple,
+              child: Icon(Icons.notifications_active, color: Colors.white),
+            ),
+            title: const Text('提醒设置'),
+            subtitle: const Text('收获提醒、浇水提醒等'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => _showReminderSettings(context, ref),
+          ),
+
+          const Divider(),
+
+          // 通知开关
           SwitchListTile(
             secondary: const CircleAvatar(
               backgroundColor: Colors.orange,
@@ -68,9 +101,9 @@ class SettingsPage extends ConsumerWidget {
             ),
             title: const Text('推送通知'),
             subtitle: const Text('收获提醒、浇水提醒等'),
-            value: true, // TODO: 接入 SharedPreferences
+            value: _notificationsEnabled,
             onChanged: (value) {
-              // TODO: 保存设置
+              _toggleNotifications(context, value);
             },
           ),
 
@@ -232,4 +265,121 @@ class SettingsPage extends ConsumerWidget {
       ),
     );
   }
+
+  String _getBalconyLabel() {
+    final balcony = ref.watch(balconyDirectionProvider);
+    return balcony.label;
+  }
+
+  void _showBalconyDirectionPicker(BuildContext context, WidgetRef ref) {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(16),
+              child: Text('选择阳台朝向', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            ),
+            const Divider(),
+            ...BalconyDirection.values.map((b) => ListTile(
+              leading: CircleAvatar(
+                backgroundColor: ref.watch(balconyDirectionProvider) == b
+                    ? Colors.teal
+                    : Colors.grey.shade200,
+                child: Text(_balconyEmoji(b)),
+              ),
+              title: Text(b.label),
+              subtitle: Text(b.description),
+              trailing: ref.watch(balconyDirectionProvider) == b
+                  ? const Icon(Icons.check, color: Colors.teal)
+                  : null,
+              onTap: () async {
+                final settings = SettingsLocalDatasource();
+                await settings.saveBalconyDirection(b.name);
+                ref.read(balconyDirectionProvider.notifier).state = b;
+                Navigator.pop(ctx);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('已保存阳台朝向：${b.label}')),
+                );
+              },
+            )),
+          ],
+        ),
+      ),
+    );
+  }
+
+  String _balconyEmoji(BalconyDirection d) {
+    switch (d) {
+      case BalconyDirection.north: return '🧭';
+      case BalconyDirection.south: return '☀️';
+      case BalconyDirection.east: return '🌅';
+      case BalconyDirection.west: return '🌇';
+      case BalconyDirection.none: return '🏠';
+    }
+  }
+
+  void _showReminderSettings(BuildContext context, WidgetRef ref) {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => StatefulBuilder(
+        builder: (ctx, setState) => SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(16),
+                child: Text('提醒设置', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              ),
+              const Divider(),
+              SwitchListTile(
+                title: const Text('收获提醒'),
+                subtitle: const Text('蔬菜成熟时通知'),
+                value: _reminderHarvest,
+                onChanged: (v) => setState(() => _reminderHarvest = v),
+              ),
+              SwitchListTile(
+                title: const Text('浇水提醒'),
+                subtitle: const Text('按种植日历定时提醒'),
+                value: _reminderWater,
+                onChanged: (v) => setState(() => _reminderWater = v),
+              ),
+              SwitchListTile(
+                title: const Text('施肥提醒'),
+                subtitle: const Text('定期施肥提醒'),
+                value: _reminderFertilize,
+                onChanged: (v) => setState(() => _reminderFertilize = v),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () async {
+                  final settings = SettingsLocalDatasource();
+                  await settings.saveReminderSettings(_reminderHarvest, _reminderWater, _reminderFertilize);
+                  Navigator.pop(ctx);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('提醒设置已保存')),
+                  );
+                },
+                child: const Text('保存设置'),
+              ),
+              const SizedBox(height: 16),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _toggleNotifications(BuildContext context, bool value) {
+    setState(() => _notificationsEnabled = value);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(value ? '推送通知已开启' : '推送通知已关闭'),
+        duration: const Duration(seconds: 2),
+      ),
+    );
+  }
+
 }

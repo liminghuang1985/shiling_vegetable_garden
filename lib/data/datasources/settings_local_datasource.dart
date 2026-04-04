@@ -5,6 +5,10 @@ class SettingsLocalDatasource {
   static const _keySelectedCityId = 'selected_city_id';
   static const _keySelectedClimate = 'selected_climate';
   static const _keyBalconyDirection = 'balcony_direction';
+  static const _keyReminderHarvest = 'reminder_harvest';
+  static const _keyReminderWater = 'reminder_water';
+  static const _keyReminderFertilize = 'reminder_fertilize';
+  static const _keyNotificationsEnabled = 'notifications_enabled';
 
   // ========== 城市选择 ==========
 
@@ -55,5 +59,35 @@ class SettingsLocalDatasource {
   Future<void> clearBalconyDirection() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_keyBalconyDirection);
+  }
+
+  // ========== 提醒设置 ==========
+
+  Future<void> saveReminderSettings(bool harvest, bool water, bool fertilize) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyReminderHarvest, harvest);
+    await prefs.setBool(_keyReminderWater, water);
+    await prefs.setBool(_keyReminderFertilize, fertilize);
+  }
+
+  Future<Map<String, bool>> getReminderSettings() async {
+    final prefs = await SharedPreferences.getInstance();
+    return {
+      'harvest': prefs.getBool(_keyReminderHarvest) ?? true,
+      'water': prefs.getBool(_keyReminderWater) ?? true,
+      'fertilize': prefs.getBool(_keyReminderFertilize) ?? false,
+    };
+  }
+
+  // ========== 通知总开关 ==========
+
+  Future<void> saveNotificationsEnabled(bool enabled) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyNotificationsEnabled, enabled);
+  }
+
+  Future<bool> getNotificationsEnabled() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_keyNotificationsEnabled) ?? true;
   }
 }

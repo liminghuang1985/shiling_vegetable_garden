@@ -184,7 +184,7 @@ class PlantingCalendarPage extends ConsumerWidget {
               child: ListTile(
                 leading: CircleAvatar(
                   backgroundColor: Colors.green.shade100,
-                  child: Text(veg.category.emoji),
+                  child: Text(veg.emoji),
                 ),
                 title: Text(veg.name),
                 subtitle: Text(
