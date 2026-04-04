@@ -138,3 +138,8 @@ final selectedCategoryProvider = StateProvider<VegetableCategory?>((ref) {
 final searchQueryProvider = StateProvider<String>((ref) {
   return '';
 });
+
+/// 阳台朝向
+final balconyDirectionProvider = StateProvider<BalconyDirection>((ref) {
+  return BalconyDirection.south; // 默认南向阳台
+});

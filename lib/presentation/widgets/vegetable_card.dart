@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../domain/entities/vegetable.dart';
-import '../../core/constants/enums.dart';
+import '../../core/theme/app_theme.dart';
 
-/// 蔬菜卡片 Widget
+/// 蔬菜卡片 Widget - 自然有机风格
 class VegetableCard extends StatelessWidget {
   final Vegetable vegetable;
   final VoidCallback? onTap;
@@ -15,38 +15,121 @@ class VegetableCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        onTap: onTap,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.06),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 头部
+            // 顶部分类标识区域
             Container(
-              height: 80,
-              width: double.infinity,
-              color: _getCategoryColor(vegetable.category).withValues(alpha: 0.2),
-              child: Center(
-                child: Text(
-                  vegetable.category.emoji,
-                  style: const TextStyle(fontSize: 48),
+              height: 72,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    _getCategoryColor(vegetable.category).withValues(alpha: 0.15),
+                    _getCategoryColor(vegetable.category).withValues(alpha: 0.05),
+                  ],
                 ),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(16),
+                  topRight: Radius.circular(16),
+                ),
+              ),
+              child: Stack(
+                children: [
+                  // 背景装饰圆
+                  Positioned(
+                    right: -10,
+                    top: -10,
+                    child: Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: _getCategoryColor(vegetable.category)
+                            .withValues(alpha: 0.1),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
+                  // 分类 Emoji
+                  Center(
+                    child: Text(
+                      vegetable.category.emoji,
+                      style: const TextStyle(fontSize: 40),
+                    ),
+                  ),
+                  // 温度标签
+                  Positioned(
+                    top: 8,
+                    right: 8,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withValues(alpha: 0.05),
+                            blurRadius: 4,
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.thermostat_outlined,
+                            size: 12,
+                            color: _getTempColor(vegetable.minTemp),
+                          ),
+                          const SizedBox(width: 2),
+                          Text(
+                            '${vegetable.minTemp.toInt()}°+',
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w600,
+                              color: _getTempColor(vegetable.minTemp),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
 
-            // 内容
+            // 内容区域
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // 蔬菜名称
                     Text(
                       vegetable.name,
                       style: const TextStyle(
                         fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w600,
+                        color: AppTheme.textPrimary,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -55,46 +138,79 @@ class VegetableCard extends StatelessWidget {
                       const SizedBox(height: 2),
                       Text(
                         vegetable.alias!,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 12,
-                          color: Colors.grey.shade600,
+                          color: AppTheme.textSecondary,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ],
                     const Spacer(),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.thermostat,
-                          size: 14,
-                          color: _getTempColor(vegetable.minTemp),
-                        ),
-                        const SizedBox(width: 4),
-                        Expanded(
-                          child: Text(
-                            vegetable.tempRange,
-                            style: const TextStyle(fontSize: 11),
-                            overflow: TextOverflow.ellipsis,
+
+                    // 光照需求标签
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppTheme.accentOrange.withValues(alpha: 0.1),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            _getSunlightIcon(vegetable.sunlight),
+                            size: 12,
+                            color: AppTheme.accentOrange,
                           ),
-                        ),
-                      ],
+                          const SizedBox(width: 4),
+                          Text(
+                            vegetable.sunlight.label,
+                            style: const TextStyle(
+                              fontSize: 11,
+                              color: AppTheme.accentOrange,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    const SizedBox(height: 4),
+
+                    const SizedBox(height: 8),
+
+                    // 成熟天数
                     Row(
                       children: [
-                        Icon(
-                          Icons.wb_sunny,
-                          size: 14,
-                          color: Colors.orange.shade400,
-                        ),
-                        const SizedBox(width: 4),
-                        Expanded(
-                          child: Text(
-                            vegetable.sunlight.label,
-                            style: const TextStyle(fontSize: 11),
-                            overflow: TextOverflow.ellipsis,
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: AppTheme.primaryGreen.withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(
+                                Icons.timeline,
+                                size: 12,
+                                color: AppTheme.primaryGreen,
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                '${vegetable.planting.maturityDays}天',
+                                style: const TextStyle(
+                                  fontSize: 11,
+                                  color: AppTheme.primaryGreen,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -109,25 +225,42 @@ class VegetableCard extends StatelessWidget {
     );
   }
 
-  Color _getCategoryColor(VegetableCategory category) {
-    switch (category) {
-      case VegetableCategory.leafy:
-        return Colors.green;
-      case VegetableCategory.fruit:
-        return Colors.red;
-      case VegetableCategory.root:
-        return Colors.orange;
-      case VegetableCategory.legume:
-        return Colors.purple;
-      case VegetableCategory.herb:
-        return Colors.teal;
+  Color _getCategoryColor(dynamic category) {
+    final name = category.toString().split('.').last;
+    switch (name) {
+      case 'leafy':
+        return AppTheme.leafyGreen;
+      case 'fruit':
+        return AppTheme.fruitRed;
+      case 'root':
+        return AppTheme.rootOrange;
+      case 'legume':
+        return AppTheme.legumePurple;
+      case 'herb':
+        return AppTheme.herbTeal;
+      default:
+        return AppTheme.lightGreen;
     }
   }
 
-  Color _getTempColor(double temp) {
-    if (temp <= 5) return Colors.blue;
-    if (temp <= 10) return Colors.cyan;
-    if (temp <= 15) return Colors.teal;
-    return Colors.orange;
+  Color _getTempColor(double minTemp) {
+    if (minTemp <= 5) return Colors.blue;
+    if (minTemp <= 10) return Colors.cyan;
+    if (minTemp <= 15) return Colors.teal;
+    return AppTheme.accentOrange;
+  }
+
+  IconData _getSunlightIcon(dynamic sunlight) {
+    final name = sunlight.toString().split('.').last;
+    switch (name) {
+      case 'fullSun':
+        return Icons.wb_sunny;
+      case 'partialSun':
+        return Icons.wb_cloudy;
+      case 'shade':
+        return Icons.cloud;
+      default:
+        return Icons.wb_sunny;
+    }
   }
 }
