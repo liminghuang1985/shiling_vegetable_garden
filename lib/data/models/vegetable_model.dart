@@ -13,8 +13,8 @@ class SoilRequirementModel extends SoilRequirement {
   factory SoilRequirementModel.fromJson(Map<String, dynamic> json) {
     return SoilRequirementModel(
       type: json['type'] as String? ?? '通用',
-      phMin: (json['ph_min'] as num?)?.toDouble() ?? 6.0,
-      phMax: (json['ph_max'] as num?)?.toDouble() ?? 7.5,
+      phMin: (json['phMin'] as num?)?.toDouble() ?? 6.0,
+      phMax: (json['phMax'] as num?)?.toDouble() ?? 7.5,
       drainage: json['drainage'] as String? ?? '良好',
     );
   }
@@ -100,11 +100,11 @@ class PlantingInfoModel extends PlantingInfo {
 
   factory PlantingInfoModel.fromJson(Map<String, dynamic> json) {
     return PlantingInfoModel(
-      depthCm: json['depth_cm'] as int? ?? 2,
-      spacingCm: json['spacing_cm'] as int? ?? 30,
-      rowSpacingCm: json['row_spacing_cm'] as int? ?? 40,
-      germinationDays: json['germination_days'] as int? ?? 7,
-      maturityDays: json['maturity_days'] as int? ?? 60,
+      depthCm: json['depthCm'] as int? ?? 2,
+      spacingCm: json['spacingCm'] as int? ?? 30,
+      rowSpacingCm: json['rowSpacingCm'] as int? ?? 40,
+      germinationDays: json['germinationDays'] as int? ?? 7,
+      maturityDays: json['maturityDays'] as int? ?? 60,
     );
   }
 
@@ -171,14 +171,14 @@ class VegetableModel extends Vegetable {
       alias: json['alias'] as String?,
       category: VegetableCategory.fromString(json['category'] as String) ?? VegetableCategory.leafy,
       sunlight: SunlightNeed.fromString(json['sunlight'] as String) ?? SunlightNeed.fullSun,
-      minTemp: (json['min_temp'] as num?)?.toDouble() ?? 10.0,
-      maxTemp: (json['max_temp'] as num?)?.toDouble() ?? 35.0,
+      minTemp: (json['minTemp'] as num?)?.toDouble() ?? 10.0,
+      maxTemp: (json['maxTemp'] as num?)?.toDouble() ?? 35.0,
       soil: SoilRequirementModel.fromJson(json['soil'] as Map<String, dynamic>? ?? {}),
       fertilizer: FertilizerModel.fromJson(json['fertilizer'] as Map<String, dynamic>? ?? {}),
       planting: PlantingInfoModel.fromJson(json['planting'] as Map<String, dynamic>? ?? {}),
       nutrients: (json['nutrients'] as List<dynamic>?)?.cast<String>() ?? [],
       cautions: (json['cautions'] as List<dynamic>?)?.cast<String>() ?? [],
-      suitableClimates: (json['suitable_climates'] as List<dynamic>?)
+      suitableClimates: (json['suitableClimates'] as List<dynamic>?)
               ?.map((e) => ClimateZone.fromString(e as String))
               .whereType<ClimateZone>()
               .toList() ??

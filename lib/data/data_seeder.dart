@@ -16,11 +16,17 @@ class DataSeeder {
 
   /// 初始化所有预设数据
   Future<void> seedIfNeeded() async {
-    final isEmpty = await _dbHelper.isDatabaseEmpty();
-    if (isEmpty) {
-      await _seedCities();
-      await _seedVegetables();
-      await _seedPlantingCalendar();
+    try {
+      final isEmpty = await _dbHelper.isDatabaseEmpty();
+      if (isEmpty) {
+        await _seedCities();
+        await _seedVegetables();
+        await _seedPlantingCalendar();
+      }
+    } catch (e, st) {
+      print('=== DataSeeder ERROR: $e ===');
+      print('=== STACK: $st ===');
+      // Continue anyway - don't crash the app
     }
   }
 
