@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/constants/enums.dart';
+import '../../data/data_seeder.dart';
+import '../../data/data_seeder.dart';
 import '../providers/providers.dart';
 
 /// 设置页
@@ -184,11 +186,11 @@ class SettingsPage extends ConsumerWidget {
           ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
             onPressed: () async {
-              final dbHelper = ref.read(databaseHelperProvider);
-              await dbHelper.clearAllData();
+              await DataSeeder.forceReSeed();
+              if (!context.mounted) return;
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('数据已清空')),
+                const SnackBar(content: Text('数据已重置')),
               );
               // 刷新页面
               ref.invalidate(myGardenProvider);

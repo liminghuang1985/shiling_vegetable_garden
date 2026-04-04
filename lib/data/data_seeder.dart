@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import '../core/constants/enums.dart';
+import '../core/constants/db_constants.dart';
 import '../core/constants/app_constants.dart';
 import 'datasources/database_helper.dart';
 import 'models/city_model.dart';
@@ -28,6 +29,23 @@ class DataSeeder {
       print('=== STACK: $st ===');
       // Continue anyway - don't crash the app
     }
+  }
+
+  /// 强制重新播种（清除所有数据后重新写入）
+  static Future<void> forceReSeed() async {
+    final seeder = DataSeeder(DatabaseHelper.instance);
+    await seeder._clearAll();
+    await seeder._seedCities();
+    await seeder._seedVegetables();
+    await seeder._seedPlantingCalendar();
+  }
+
+  Future<void> _clearAll() async {
+    final db = await _dbHelper.database;
+    await db.delete(DbTables.cities);
+    await db.delete(DbTables.vegetables);
+    await db.delete(DbTables.plantingCalendar);
+    await db.delete(DbTables.myGarden);
   }
 
   /// 播种预设城市数据
