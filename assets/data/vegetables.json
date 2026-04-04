@@ -7,12 +7,40 @@
     "sunlight": "fullSun",
     "minTemp": 15,
     "maxTemp": 35,
-    "soil": {"type": "疏松肥沃", "phMin": 6.0, "phMax": 6.5, "drainage": "良好"},
-    "fertilizer": {"base": "腐熟有机肥", "top": "结果期增施磷钾肥"},
-    "planting": {"depthCm": 1, "spacingCm": 35, "rowSpacingCm": 75, "germinationDays": 7, "maturityDays": 130},
-    "nutrients": ["维生素C", "番茄红素", "钾"],
-    "cautions": ["不耐连作", "需整枝打杈", "注意防治晚疫病"],
-    "suitableClimates": ["temperate", "warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 6.5,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "腐熟有机肥",
+      "top": "结果期增施磷钾肥"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 35,
+      "rowSpacingCm": 75,
+      "germinationDays": 7,
+      "maturityDays": 130
+    },
+    "nutrients": [
+      "维生素C",
+      "番茄红素",
+      "钾"
+    ],
+    "cautions": [
+      "不耐连作",
+      "需整枝打杈",
+      "注意防治晚疫病"
+    ],
+    "suitableClimates": [
+      "temperate",
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "hg",
@@ -22,12 +50,40 @@
     "sunlight": "fullSun",
     "minTemp": 13,
     "maxTemp": 35,
-    "soil": {"type": "疏松肥沃", "phMin": 5.5, "phMax": 7.2, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥为主", "top": "薄肥勤施，结瓜期增施钾肥"},
-    "planting": {"depthCm": 2, "spacingCm": 30, "rowSpacingCm": 65, "germinationDays": 5, "maturityDays": 60},
-    "nutrients": ["维生素C", "钾", "硅"],
-    "cautions": ["喜湿润但不耐涝", "需搭架或吊蔓", "注意防治霜霉病白粉病"],
-    "suitableClimates": ["temperate", "warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 5.5,
+      "phMax": 7.2,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥为主",
+      "top": "薄肥勤施，结瓜期增施钾肥"
+    },
+    "planting": {
+      "depthCm": 2,
+      "spacingCm": 30,
+      "rowSpacingCm": 65,
+      "germinationDays": 5,
+      "maturityDays": 60
+    },
+    "nutrients": [
+      "维生素C",
+      "钾",
+      "硅"
+    ],
+    "cautions": [
+      "喜湿润但不耐涝",
+      "需搭架或吊蔓",
+      "注意防治霜霉病白粉病"
+    ],
+    "suitableClimates": [
+      "temperate",
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "qz",
@@ -37,12 +93,40 @@
     "sunlight": "fullSun",
     "minTemp": 20,
     "maxTemp": 35,
-    "soil": {"type": "疏松肥沃", "phMin": 6.8, "phMax": 7.3, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥+磷钾肥", "top": "结果期重施磷钾肥"},
-    "planting": {"depthCm": 1, "spacingCm": 65, "rowSpacingCm": 70, "germinationDays": 10, "maturityDays": 60},
-    "nutrients": ["花青素", "钾", "维生素P"],
-    "cautions": ["不耐涝", "需整枝", "注意防治黄萎病绵疫病"],
-    "suitableClimates": ["temperate", "warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.8,
+      "phMax": 7.3,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥+磷钾肥",
+      "top": "结果期重施磷钾肥"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 65,
+      "rowSpacingCm": 70,
+      "germinationDays": 10,
+      "maturityDays": 60
+    },
+    "nutrients": [
+      "花青素",
+      "钾",
+      "维生素P"
+    ],
+    "cautions": [
+      "不耐涝",
+      "需整枝",
+      "注意防治黄萎病绵疫病"
+    ],
+    "suitableClimates": [
+      "temperate",
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "lj",
@@ -52,12 +136,39 @@
     "sunlight": "fullSun",
     "minTemp": 15,
     "maxTemp": 35,
-    "soil": {"type": "疏松肥沃", "phMin": 5.5, "phMax": 6.8, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥", "top": "结果期增施磷钾，少施氮肥"},
-    "planting": {"depthCm": 1, "spacingCm": 40, "rowSpacingCm": 55, "germinationDays": 7, "maturityDays": 75},
-    "nutrients": ["维生素C", "辣椒素", "钾"],
-    "cautions": ["不耐旱也不耐涝", "注意防治炭疽病病毒病"],
-    "suitableClimates": ["temperate", "warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 5.5,
+      "phMax": 6.8,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "结果期增施磷钾，少施氮肥"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 40,
+      "rowSpacingCm": 55,
+      "germinationDays": 7,
+      "maturityDays": 75
+    },
+    "nutrients": [
+      "维生素C",
+      "辣椒素",
+      "钾"
+    ],
+    "cautions": [
+      "不耐旱也不耐涝",
+      "注意防治炭疽病病毒病"
+    ],
+    "suitableClimates": [
+      "temperate",
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "sjc",
@@ -67,12 +178,39 @@
     "sunlight": "fullSun",
     "minTemp": 15,
     "maxTemp": 30,
-    "soil": {"type": "疏松肥沃", "phMin": 6.0, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥+磷钾肥", "top": "开花结荚期追施磷钾肥"},
-    "planting": {"depthCm": 3, "spacingCm": 35, "rowSpacingCm": 65, "germinationDays": 7, "maturityDays": 70},
-    "nutrients": ["蛋白质", "膳食纤维", "维生素B"],
-    "cautions": ["不耐盐碱", "需3年以上轮作"],
-    "suitableClimates": ["temperate", "warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥+磷钾肥",
+      "top": "开花结荚期追施磷钾肥"
+    },
+    "planting": {
+      "depthCm": 3,
+      "spacingCm": 35,
+      "rowSpacingCm": 65,
+      "germinationDays": 7,
+      "maturityDays": 70
+    },
+    "nutrients": [
+      "蛋白质",
+      "膳食纤维",
+      "维生素B"
+    ],
+    "cautions": [
+      "不耐盐碱",
+      "需3年以上轮作"
+    ],
+    "suitableClimates": [
+      "temperate",
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "xbc",
@@ -82,12 +220,40 @@
     "sunlight": "partialSun",
     "minTemp": 10,
     "maxTemp": 25,
-    "soil": {"type": "疏松肥沃", "phMin": 6.0, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "腐熟有机肥", "top": "以氮肥为主，薄肥勤施"},
-    "planting": {"depthCm": 1, "spacingCm": 18, "rowSpacingCm": 22, "germinationDays": 4, "maturityDays": 35},
-    "nutrients": ["维生素C", "钙", "胡萝卜素"],
-    "cautions": ["夏季选耐热品种", "注意防治软腐病菜青虫"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "腐熟有机肥",
+      "top": "以氮肥为主，薄肥勤施"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 18,
+      "rowSpacingCm": 22,
+      "germinationDays": 4,
+      "maturityDays": 35
+    },
+    "nutrients": [
+      "维生素C",
+      "钙",
+      "胡萝卜素"
+    ],
+    "cautions": [
+      "夏季选耐热品种",
+      "注意防治软腐病菜青虫"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "sc",
@@ -97,12 +263,40 @@
     "sunlight": "partialSun",
     "minTemp": 5,
     "maxTemp": 22,
-    "soil": {"type": "疏松肥沃", "phMin": 6.0, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥", "top": "平衡肥为主"},
-    "planting": {"depthCm": 1, "spacingCm": 28, "rowSpacingCm": 35, "germinationDays": 6, "maturityDays": 75},
-    "nutrients": ["维生素C", "莴苣素", "钾"],
-    "cautions": ["不耐高温也不耐寒", "夏季选耐热品种"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "平衡肥为主"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 28,
+      "rowSpacingCm": 35,
+      "germinationDays": 6,
+      "maturityDays": 75
+    },
+    "nutrients": [
+      "维生素C",
+      "莴苣素",
+      "钾"
+    ],
+    "cautions": [
+      "不耐高温也不耐寒",
+      "夏季选耐热品种"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "bc",
@@ -112,12 +306,40 @@
     "sunlight": "partialSun",
     "minTemp": 5,
     "maxTemp": 20,
-    "soil": {"type": "疏松肥沃", "phMin": 6.0, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥", "top": "以氮肥为主"},
-    "planting": {"depthCm": 1, "spacingCm": 15, "rowSpacingCm": 20, "germinationDays": 7, "maturityDays": 45},
-    "nutrients": ["铁", "维生素C", "胡萝卜素"],
-    "cautions": ["耐寒性强", "夏季选耐热品种"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "以氮肥为主"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 15,
+      "rowSpacingCm": 20,
+      "germinationDays": 7,
+      "maturityDays": 45
+    },
+    "nutrients": [
+      "铁",
+      "维生素C",
+      "胡萝卜素"
+    ],
+    "cautions": [
+      "耐寒性强",
+      "夏季选耐热品种"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "bl",
@@ -127,12 +349,40 @@
     "sunlight": "fullSun",
     "minTemp": 5,
     "maxTemp": 25,
-    "soil": {"type": "土层深厚疏松沙壤土", "phMin": 6.5, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥+磷钾肥", "top": "肉质根膨大期重施钾肥"},
-    "planting": {"depthCm": 2, "spacingCm": 28, "rowSpacingCm": 45, "germinationDays": 5, "maturityDays": 75},
-    "nutrients": ["淀粉酶", "维生素C", "芥子油"],
-    "cautions": ["忌连作", "土壤需疏松否则易分叉"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "土层深厚疏松沙壤土",
+      "phMin": 6.5,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥+磷钾肥",
+      "top": "肉质根膨大期重施钾肥"
+    },
+    "planting": {
+      "depthCm": 2,
+      "spacingCm": 28,
+      "rowSpacingCm": 45,
+      "germinationDays": 5,
+      "maturityDays": 75
+    },
+    "nutrients": [
+      "淀粉酶",
+      "维生素C",
+      "芥子油"
+    ],
+    "cautions": [
+      "忌连作",
+      "土壤需疏松否则易分叉"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "hlb",
@@ -142,12 +392,40 @@
     "sunlight": "fullSun",
     "minTemp": 10,
     "maxTemp": 25,
-    "soil": {"type": "土层深厚疏松沙质土", "phMin": 5.5, "phMax": 6.8, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥", "top": "以钾肥为主，氮肥为辅"},
-    "planting": {"depthCm": 1, "spacingCm": 12, "rowSpacingCm": 22, "germinationDays": 10, "maturityDays": 85},
-    "nutrients": ["胡萝卜素", "维生素B1", "钾"],
-    "cautions": ["土壤需疏松否则肉质根易畸形", "忌化肥过多"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "土层深厚疏松沙质土",
+      "phMin": 5.5,
+      "phMax": 6.8,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "以钾肥为主，氮肥为辅"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 12,
+      "rowSpacingCm": 22,
+      "germinationDays": 10,
+      "maturityDays": 85
+    },
+    "nutrients": [
+      "胡萝卜素",
+      "维生素B1",
+      "钾"
+    ],
+    "cautions": [
+      "土壤需疏松否则肉质根易畸形",
+      "忌化肥过多"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "dbc",
@@ -157,12 +435,37 @@
     "sunlight": "fullSun",
     "minTemp": 5,
     "maxTemp": 30,
-    "soil": {"type": "土层深厚疏松保水保肥", "phMin": 6.5, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥+复合肥", "top": "莲座期施氮，结球期增施钾肥"},
-    "planting": {"depthCm": 1, "spacingCm": 50, "rowSpacingCm": 55, "germinationDays": 5, "maturityDays": 70},
-    "nutrients": ["维生素C", "膳食纤维", "钙"],
-    "cautions": ["需轮作", "注意防治软腐病霜霉病"],
-    "suitableClimates": ["cold", "temperate", "warm"]
+    "soil": {
+      "type": "土层深厚疏松保水保肥",
+      "phMin": 6.5,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥+复合肥",
+      "top": "莲座期施氮，结球期增施钾肥"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 50,
+      "rowSpacingCm": 55,
+      "germinationDays": 5,
+      "maturityDays": 70
+    },
+    "nutrients": [
+      "维生素C",
+      "膳食纤维",
+      "钙"
+    ],
+    "cautions": [
+      "需轮作",
+      "注意防治软腐病霜霉病"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm"
+    ]
   },
   {
     "id": "xc",
@@ -172,12 +475,39 @@
     "sunlight": "partialSun",
     "minTemp": 5,
     "maxTemp": 20,
-    "soil": {"type": "疏松肥沃", "phMin": 6.2, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥", "top": "氮肥为主"},
-    "planting": {"depthCm": 1, "spacingCm": 10, "rowSpacingCm": 15, "germinationDays": 10, "maturityDays": 45},
-    "nutrients": ["维生素C", "芳樟醇", "钙"],
-    "cautions": ["种子外壳硬播前需搓开", "不耐热夏季需遮阳"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.2,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "氮肥为主"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 10,
+      "rowSpacingCm": 15,
+      "germinationDays": 10,
+      "maturityDays": 45
+    },
+    "nutrients": [
+      "维生素C",
+      "芳樟醇",
+      "钙"
+    ],
+    "cautions": [
+      "种子外壳硬播前需搓开",
+      "不耐热夏季需遮阳"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
   },
   {
     "id": "jc",
@@ -187,12 +517,39 @@
     "sunlight": "partialSun",
     "minTemp": -30,
     "maxTemp": 30,
-    "soil": {"type": "疏松肥沃", "phMin": 6.0, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥", "top": "每次收割后追施氮肥+有机肥"},
-    "planting": {"depthCm": 2, "spacingCm": 12, "rowSpacingCm": 22, "germinationDays": 15, "maturityDays": 90},
-    "nutrients": ["硫化物", "维生素C", "纤维素"],
-    "cautions": ["可收割多茬", "冬季培土可软化为韭黄"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "每次收割后追施氮肥+有机肥"
+    },
+    "planting": {
+      "depthCm": 2,
+      "spacingCm": 12,
+      "rowSpacingCm": 22,
+      "germinationDays": 15,
+      "maturityDays": 90
+    },
+    "nutrients": [
+      "硫化物",
+      "维生素C",
+      "纤维素"
+    ],
+    "cautions": [
+      "可收割多茬",
+      "冬季培土可软化为韭黄"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
   },
   {
     "id": "qc",
@@ -202,12 +559,39 @@
     "sunlight": "partialSun",
     "minTemp": 5,
     "maxTemp": 22,
-    "soil": {"type": "疏松肥沃保水性强", "phMin": 6.0, "phMax": 7.5, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥", "top": "氮肥为主，辅以磷钾"},
-    "planting": {"depthCm": 1, "spacingCm": 18, "rowSpacingCm": 25, "germinationDays": 10, "maturityDays": 110},
-    "nutrients": ["芹菜素", "钾", "维生素C"],
-    "cautions": ["需保持土壤湿润", "夏季种植需遮阳降温"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃保水性强",
+      "phMin": 6.0,
+      "phMax": 7.5,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "氮肥为主，辅以磷钾"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 18,
+      "rowSpacingCm": 25,
+      "germinationDays": 10,
+      "maturityDays": 110
+    },
+    "nutrients": [
+      "芹菜素",
+      "钾",
+      "维生素C"
+    ],
+    "cautions": [
+      "需保持土壤湿润",
+      "夏季种植需遮阳降温"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
   },
   {
     "id": "cx",
@@ -217,12 +601,36 @@
     "sunlight": "fullSun",
     "minTemp": 10,
     "maxTemp": 25,
-    "soil": {"type": "疏松肥沃", "phMin": 6.0, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥", "top": "高氮肥"},
-    "planting": {"depthCm": 1, "spacingCm": 18, "rowSpacingCm": 22, "germinationDays": 5, "maturityDays": 38},
-    "nutrients": ["维生素C", "钙", "胡萝卜素"],
-    "cautions": ["采收时花蕾未开苔高15-20cm最佳"],
-    "suitableClimates": ["subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "高氮肥"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 18,
+      "rowSpacingCm": 22,
+      "germinationDays": 5,
+      "maturityDays": 38
+    },
+    "nutrients": [
+      "维生素C",
+      "钙",
+      "胡萝卜素"
+    ],
+    "cautions": [
+      "采收时花蕾未开苔高15-20cm最佳"
+    ],
+    "suitableClimates": [
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "kxc",
@@ -232,12 +640,39 @@
     "sunlight": "fullSun",
     "minTemp": 20,
     "maxTemp": 35,
-    "soil": {"type": "湿润肥沃", "phMin": 5.6, "phMax": 6.5, "drainage": "一般"},
-    "fertilizer": {"base": "有机肥", "top": "少次多量，平衡肥为主"},
-    "planting": {"depthCm": 2, "spacingCm": 20, "rowSpacingCm": 30, "germinationDays": 7, "maturityDays": 30},
-    "nutrients": ["维生素C", "纤维素", "钙"],
-    "cautions": ["可多次采收掐嫩梢", "可水培", "喜湿不耐旱"],
-    "suitableClimates": ["warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "湿润肥沃",
+      "phMin": 5.6,
+      "phMax": 6.5,
+      "drainage": "一般"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "少次多量，平衡肥为主"
+    },
+    "planting": {
+      "depthCm": 2,
+      "spacingCm": 20,
+      "rowSpacingCm": 30,
+      "germinationDays": 7,
+      "maturityDays": 30
+    },
+    "nutrients": [
+      "维生素C",
+      "纤维素",
+      "钙"
+    ],
+    "cautions": [
+      "可多次采收掐嫩梢",
+      "可水培",
+      "喜湿不耐旱"
+    ],
+    "suitableClimates": [
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "kg",
@@ -247,12 +682,39 @@
     "sunlight": "fullSun",
     "minTemp": 20,
     "maxTemp": 35,
-    "soil": {"type": "疏松肥沃", "phMin": 6.0, "phMax": 6.5, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥", "top": "结果期增施磷钾肥"},
-    "planting": {"depthCm": 2, "spacingCm": 70, "rowSpacingCm": 110, "germinationDays": 7, "maturityDays": 68},
-    "nutrients": ["苦瓜苷", "维生素C", "钾"],
-    "cautions": ["需搭架", "耐热不耐寒", "不耐涝"],
-    "suitableClimates": ["warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 6.5,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "结果期增施磷钾肥"
+    },
+    "planting": {
+      "depthCm": 2,
+      "spacingCm": 70,
+      "rowSpacingCm": 110,
+      "germinationDays": 7,
+      "maturityDays": 68
+    },
+    "nutrients": [
+      "苦瓜苷",
+      "维生素C",
+      "钾"
+    ],
+    "cautions": [
+      "需搭架",
+      "耐热不耐寒",
+      "不耐涝"
+    ],
+    "suitableClimates": [
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "sg",
@@ -262,12 +724,39 @@
     "sunlight": "fullSun",
     "minTemp": 20,
     "maxTemp": 35,
-    "soil": {"type": "疏松肥沃保水性好", "phMin": 6.0, "phMax": 6.5, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥", "top": "结果期增施磷钾肥"},
-    "planting": {"depthCm": 2, "spacingCm": 70, "rowSpacingCm": 120, "germinationDays": 7, "maturityDays": 75},
-    "nutrients": ["蛋白质", "维生素C", "钙"],
-    "cautions": ["需搭棚架", "需人工授粉", "耐热耐湿"],
-    "suitableClimates": ["warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃保水性好",
+      "phMin": 6.0,
+      "phMax": 6.5,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "结果期增施磷钾肥"
+    },
+    "planting": {
+      "depthCm": 2,
+      "spacingCm": 70,
+      "rowSpacingCm": 120,
+      "germinationDays": 7,
+      "maturityDays": 75
+    },
+    "nutrients": [
+      "蛋白质",
+      "维生素C",
+      "钙"
+    ],
+    "cautions": [
+      "需搭棚架",
+      "需人工授粉",
+      "耐热耐湿"
+    ],
+    "suitableClimates": [
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "th",
@@ -277,12 +766,38 @@
     "sunlight": "partialSun",
     "minTemp": 5,
     "maxTemp": 22,
-    "soil": {"type": "疏松肥沃", "phMin": 5.5, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥", "top": "氮肥为主"},
-    "planting": {"depthCm": 1, "spacingCm": 15, "rowSpacingCm": 20, "germinationDays": 7, "maturityDays": 45},
-    "nutrients": ["维生素C", "胡萝卜素", "钾"],
-    "cautions": ["以秋播为主8月下旬-10月"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 5.5,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "氮肥为主"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 15,
+      "rowSpacingCm": 20,
+      "germinationDays": 7,
+      "maturityDays": 45
+    },
+    "nutrients": [
+      "维生素C",
+      "胡萝卜素",
+      "钾"
+    ],
+    "cautions": [
+      "以秋播为主8月下旬-10月"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
   },
   {
     "id": "wc",
@@ -292,12 +807,40 @@
     "sunlight": "partialSun",
     "minTemp": 5,
     "maxTemp": 20,
-    "soil": {"type": "疏松肥沃", "phMin": 6.0, "phMax": 7.5, "drainage": "良好"},
-    "fertilizer": {"base": "磷钾肥为主", "top": "避免氮肥过多"},
-    "planting": {"depthCm": 4, "spacingCm": 12, "rowSpacingCm": 35, "germinationDays": 8, "maturityDays": 90},
-    "nutrients": ["蛋白质", "维生素C", "膳食纤维"],
-    "cautions": ["耐寒不耐热", "可秋播过冬", "需搭架或匍匐栽培"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.5,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "磷钾肥为主",
+      "top": "避免氮肥过多"
+    },
+    "planting": {
+      "depthCm": 4,
+      "spacingCm": 12,
+      "rowSpacingCm": 35,
+      "germinationDays": 8,
+      "maturityDays": 90
+    },
+    "nutrients": [
+      "蛋白质",
+      "维生素C",
+      "膳食纤维"
+    ],
+    "cautions": [
+      "耐寒不耐热",
+      "可秋播过冬",
+      "需搭架或匍匐栽培"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
   },
   {
     "id": "md",
@@ -307,12 +850,38 @@
     "sunlight": "fullSun",
     "minTemp": 14,
     "maxTemp": 35,
-    "soil": {"type": "疏松肥沃", "phMin": 6.0, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥+磷钾肥", "top": "结荚期增施磷钾肥"},
-    "planting": {"depthCm": 3, "spacingCm": 25, "rowSpacingCm": 45, "germinationDays": 7, "maturityDays": 105},
-    "nutrients": ["蛋白质", "大豆异黄酮", "钾"],
-    "cautions": ["不耐盐碱", "需轮作", "最迟7-8月播种"],
-    "suitableClimates": ["temperate", "warm", "subtropical"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥+磷钾肥",
+      "top": "结荚期增施磷钾肥"
+    },
+    "planting": {
+      "depthCm": 3,
+      "spacingCm": 25,
+      "rowSpacingCm": 45,
+      "germinationDays": 7,
+      "maturityDays": 105
+    },
+    "nutrients": [
+      "蛋白质",
+      "大豆异黄酮",
+      "钾"
+    ],
+    "cautions": [
+      "不耐盐碱",
+      "需轮作",
+      "最迟7-8月播种"
+    ],
+    "suitableClimates": [
+      "temperate",
+      "warm",
+      "subtropical"
+    ]
   },
   {
     "id": "ds",
@@ -322,12 +891,39 @@
     "sunlight": "fullSun",
     "minTemp": -5,
     "maxTemp": 25,
-    "soil": {"type": "疏松肥沃", "phMin": 6.0, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥+磷钾肥", "top": "越冬前控制氮肥"},
-    "planting": {"depthCm": 4, "spacingCm": 10, "rowSpacingCm": 18, "germinationDays": 10, "maturityDays": 180},
-    "nutrients": ["大蒜素", "锗", "维生素B6"],
-    "cautions": ["需低温春化", "蒜头膨大期需培土"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥+磷钾肥",
+      "top": "越冬前控制氮肥"
+    },
+    "planting": {
+      "depthCm": 4,
+      "spacingCm": 10,
+      "rowSpacingCm": 18,
+      "germinationDays": 10,
+      "maturityDays": 180
+    },
+    "nutrients": [
+      "大蒜素",
+      "锗",
+      "维生素B6"
+    ],
+    "cautions": [
+      "需低温春化",
+      "蒜头膨大期需培土"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
   },
   {
     "id": "sng",
@@ -337,12 +933,39 @@
     "sunlight": "partialSun",
     "minTemp": 15,
     "maxTemp": 28,
-    "soil": {"type": "疏松肥沃排水良好", "phMin": 5.5, "phMax": 6.5, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥为主", "top": "多次追施氮钾肥"},
-    "planting": {"depthCm": 6, "spacingCm": 22, "rowSpacingCm": 45, "germinationDays": 20, "maturityDays": 120},
-    "nutrients": ["姜辣素", "姜烯酚", "锰"],
-    "cautions": ["喜湿润不耐涝", "需遮阳", "不耐强光直射"],
-    "suitableClimates": ["warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃排水良好",
+      "phMin": 5.5,
+      "phMax": 6.5,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥为主",
+      "top": "多次追施氮钾肥"
+    },
+    "planting": {
+      "depthCm": 6,
+      "spacingCm": 22,
+      "rowSpacingCm": 45,
+      "germinationDays": 20,
+      "maturityDays": 120
+    },
+    "nutrients": [
+      "姜辣素",
+      "姜烯酚",
+      "锰"
+    ],
+    "cautions": [
+      "喜湿润不耐涝",
+      "需遮阳",
+      "不耐强光直射"
+    ],
+    "suitableClimates": [
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "yt",
@@ -352,12 +975,39 @@
     "sunlight": "partialSun",
     "minTemp": 15,
     "maxTemp": 30,
-    "soil": {"type": "疏松肥沃喜湿", "phMin": 5.5, "phMax": 7.0, "drainage": "一般"},
-    "fertilizer": {"base": "有机肥+钾肥", "top": "氮磷钾配合"},
-    "planting": {"depthCm": 8, "spacingCm": 60, "rowSpacingCm": 90, "germinationDays": 20, "maturityDays": 210},
-    "nutrients": ["淀粉", "膳食纤维", "钾"],
-    "cautions": ["需高温长季节", "喜湿", "不耐旱"],
-    "suitableClimates": ["warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃喜湿",
+      "phMin": 5.5,
+      "phMax": 7.0,
+      "drainage": "一般"
+    },
+    "fertilizer": {
+      "base": "有机肥+钾肥",
+      "top": "氮磷钾配合"
+    },
+    "planting": {
+      "depthCm": 8,
+      "spacingCm": 60,
+      "rowSpacingCm": 90,
+      "germinationDays": 20,
+      "maturityDays": 210
+    },
+    "nutrients": [
+      "淀粉",
+      "膳食纤维",
+      "钾"
+    ],
+    "cautions": [
+      "需高温长季节",
+      "喜湿",
+      "不耐旱"
+    ],
+    "suitableClimates": [
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "gs",
@@ -367,12 +1017,38 @@
     "sunlight": "fullSun",
     "minTemp": 15,
     "maxTemp": 35,
-    "soil": {"type": "疏松沙壤土", "phMin": 5.0, "phMax": 6.5, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥+钾肥", "top": "控制氮肥"},
-    "planting": {"depthCm": 5, "spacingCm": 28, "rowSpacingCm": 70, "germinationDays": 15, "maturityDays": 120},
-    "nutrients": ["膳食纤维", "维生素C", "胡萝卜素"],
-    "cautions": ["极耐旱", "忌涝", "需翻蔓控旺"],
-    "suitableClimates": ["warm", "subtropical", "tropical"]
+    "soil": {
+      "type": "疏松沙壤土",
+      "phMin": 5.0,
+      "phMax": 6.5,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥+钾肥",
+      "top": "控制氮肥"
+    },
+    "planting": {
+      "depthCm": 5,
+      "spacingCm": 28,
+      "rowSpacingCm": 70,
+      "germinationDays": 15,
+      "maturityDays": 120
+    },
+    "nutrients": [
+      "膳食纤维",
+      "维生素C",
+      "胡萝卜素"
+    ],
+    "cautions": [
+      "极耐旱",
+      "忌涝",
+      "需翻蔓控旺"
+    ],
+    "suitableClimates": [
+      "warm",
+      "subtropical",
+      "tropical"
+    ]
   },
   {
     "id": "lg",
@@ -382,12 +1058,38 @@
     "sunlight": "fullSun",
     "minTemp": 15,
     "maxTemp": 30,
-    "soil": {"type": "水生/塘泥", "phMin": 6.0, "phMax": 7.0, "drainage": "差"},
-    "fertilizer": {"base": "塘泥+有机肥", "top": "磷钾肥为主"},
-    "planting": {"depthCm": 15, "spacingCm": 150, "rowSpacingCm": 200, "germinationDays": 30, "maturityDays": 190},
-    "nutrients": ["淀粉", "膳食纤维", "维生素C"],
-    "cautions": ["需水深15-30cm", "需充足阳光"],
-    "suitableClimates": ["warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "水生/塘泥",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "差"
+    },
+    "fertilizer": {
+      "base": "塘泥+有机肥",
+      "top": "磷钾肥为主"
+    },
+    "planting": {
+      "depthCm": 15,
+      "spacingCm": 150,
+      "rowSpacingCm": 200,
+      "germinationDays": 30,
+      "maturityDays": 190
+    },
+    "nutrients": [
+      "淀粉",
+      "膳食纤维",
+      "维生素C"
+    ],
+    "cautions": [
+      "需水深15-30cm",
+      "需充足阳光"
+    ],
+    "suitableClimates": [
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "jb",
@@ -397,12 +1099,37 @@
     "sunlight": "fullSun",
     "minTemp": 10,
     "maxTemp": 25,
-    "soil": {"type": "水生", "phMin": 6.0, "phMax": 7.0, "drainage": "差"},
-    "fertilizer": {"base": "有机肥", "top": "氮磷钾均衡"},
-    "planting": {"depthCm": 10, "spacingCm": 60, "rowSpacingCm": 80, "germinationDays": 20, "maturityDays": 70},
-    "nutrients": ["蛋白质", "赖氨酸", "纤维素"],
-    "cautions": ["需充足阳光淡水环境", "定期换水"],
-    "suitableClimates": ["warm", "subtropical", "plateau"]
+    "soil": {
+      "type": "水生",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "差"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "氮磷钾均衡"
+    },
+    "planting": {
+      "depthCm": 10,
+      "spacingCm": 60,
+      "rowSpacingCm": 80,
+      "germinationDays": 20,
+      "maturityDays": 70
+    },
+    "nutrients": [
+      "蛋白质",
+      "赖氨酸",
+      "纤维素"
+    ],
+    "cautions": [
+      "需充足阳光淡水环境",
+      "定期换水"
+    ],
+    "suitableClimates": [
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
   },
   {
     "id": "qc2",
@@ -412,12 +1139,40 @@
     "sunlight": "partialSun",
     "minTemp": 5,
     "maxTemp": 20,
-    "soil": {"type": "疏松肥沃", "phMin": 6.0, "phMax": 7.5, "drainage": "良好"},
-    "fertilizer": {"base": "薄施有机肥", "top": "氮肥为主"},
-    "planting": {"depthCm": 1, "spacingCm": 15, "rowSpacingCm": 20, "germinationDays": 7, "maturityDays": 35},
-    "nutrients": ["荠菜酸", "维生素C", "钙"],
-    "cautions": ["耐寒", "野生可挖", "春秋可播"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.5,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "薄施有机肥",
+      "top": "氮肥为主"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 15,
+      "rowSpacingCm": 20,
+      "germinationDays": 7,
+      "maturityDays": 35
+    },
+    "nutrients": [
+      "荠菜酸",
+      "维生素C",
+      "钙"
+    ],
+    "cautions": [
+      "耐寒",
+      "野生可挖",
+      "春秋可播"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
   },
   {
     "id": "bh",
@@ -427,12 +1182,41 @@
     "sunlight": "partialSun",
     "minTemp": 5,
     "maxTemp": 30,
-    "soil": {"type": "湿润肥沃", "phMin": 6.0, "phMax": 7.5, "drainage": "良好"},
-    "fertilizer": {"base": "薄肥", "top": "薄肥勤施"},
-    "planting": {"depthCm": 1, "spacingCm": 20, "rowSpacingCm": 30, "germinationDays": 14, "maturityDays": 30},
-    "nutrients": ["薄荷醇", "薄荷酮", "维生素C"],
-    "cautions": ["繁殖能力强匍匐茎", "可水培", "收割后追肥促进再发"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "湿润肥沃",
+      "phMin": 6.0,
+      "phMax": 7.5,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "薄肥",
+      "top": "薄肥勤施"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 20,
+      "rowSpacingCm": 30,
+      "germinationDays": 14,
+      "maturityDays": 30
+    },
+    "nutrients": [
+      "薄荷醇",
+      "薄荷酮",
+      "维生素C"
+    ],
+    "cautions": [
+      "繁殖能力强匍匐茎",
+      "可水培",
+      "收割后追肥促进再发"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "xlh",
@@ -442,12 +1226,39 @@
     "sunlight": "fullSun",
     "minTemp": 10,
     "maxTemp": 25,
-    "soil": {"type": "疏松肥沃有机质丰富", "phMin": 6.0, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥+硼肥", "top": "花球期增施钾肥"},
-    "planting": {"depthCm": 1, "spacingCm": 45, "rowSpacingCm": 55, "germinationDays": 6, "maturityDays": 85},
-    "nutrients": ["维生素C", "萝卜硫素", "钾"],
-    "cautions": ["不耐热也不耐寒", "花球形成期需低温春化"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃有机质丰富",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥+硼肥",
+      "top": "花球期增施钾肥"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 45,
+      "rowSpacingCm": 55,
+      "germinationDays": 6,
+      "maturityDays": 85
+    },
+    "nutrients": [
+      "维生素C",
+      "萝卜硫素",
+      "钾"
+    ],
+    "cautions": [
+      "不耐热也不耐寒",
+      "花球形成期需低温春化"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
   },
   {
     "id": "hyc",
@@ -457,12 +1268,39 @@
     "sunlight": "fullSun",
     "minTemp": 10,
     "maxTemp": 22,
-    "soil": {"type": "疏松肥沃保水性强", "phMin": 6.0, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥", "top": "花球期增施钾肥+钼肥"},
-    "planting": {"depthCm": 1, "spacingCm": 45, "rowSpacingCm": 55, "germinationDays": 6, "maturityDays": 75},
-    "nutrients": ["维生素C", "钾", "膳食纤维"],
-    "cautions": ["高温下花球易松散", "不耐涝"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃保水性强",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "花球期增施钾肥+钼肥"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 45,
+      "rowSpacingCm": 55,
+      "germinationDays": 6,
+      "maturityDays": 75
+    },
+    "nutrients": [
+      "维生素C",
+      "钾",
+      "膳食纤维"
+    ],
+    "cautions": [
+      "高温下花球易松散",
+      "不耐涝"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
   },
   {
     "id": "ws",
@@ -472,12 +1310,39 @@
     "sunlight": "partialSun",
     "minTemp": 11,
     "maxTemp": 25,
-    "soil": {"type": "疏松肥沃", "phMin": 6.0, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥", "top": "氮肥为主，茎膨大期增施钾肥"},
-    "planting": {"depthCm": 1, "spacingCm": 28, "rowSpacingCm": 35, "germinationDays": 7, "maturityDays": 100},
-    "nutrients": ["莴苣素", "钾", "维生素C"],
-    "cautions": ["高温易抽薹", "需适度控水促进茎膨大"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "氮肥为主，茎膨大期增施钾肥"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 28,
+      "rowSpacingCm": 35,
+      "germinationDays": 7,
+      "maturityDays": 100
+    },
+    "nutrients": [
+      "莴苣素",
+      "钾",
+      "维生素C"
+    ],
+    "cautions": [
+      "高温易抽薹",
+      "需适度控水促进茎膨大"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
   },
   {
     "id": "dg",
@@ -487,12 +1352,39 @@
     "sunlight": "fullSun",
     "minTemp": 20,
     "maxTemp": 35,
-    "soil": {"type": "疏松肥沃", "phMin": 5.5, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥+磷钾肥", "top": "结果期重施钾肥"},
-    "planting": {"depthCm": 3, "spacingCm": 90, "rowSpacingCm": 165, "germinationDays": 7, "maturityDays": 100},
-    "nutrients": ["蛋白质", "维生素C", "钾"],
-    "cautions": ["需搭架或爬地生长", "耐热耐湿", "不耐寒"],
-    "suitableClimates": ["warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 5.5,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥+磷钾肥",
+      "top": "结果期重施钾肥"
+    },
+    "planting": {
+      "depthCm": 3,
+      "spacingCm": 90,
+      "rowSpacingCm": 165,
+      "germinationDays": 7,
+      "maturityDays": 100
+    },
+    "nutrients": [
+      "蛋白质",
+      "维生素C",
+      "钾"
+    ],
+    "cautions": [
+      "需搭架或爬地生长",
+      "耐热耐湿",
+      "不耐寒"
+    ],
+    "suitableClimates": [
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "xg",
@@ -502,12 +1394,39 @@
     "sunlight": "fullSun",
     "minTemp": 20,
     "maxTemp": 35,
-    "soil": {"type": "疏松沙质土", "phMin": 5.5, "phMax": 7.0, "drainage": "极好"},
-    "fertilizer": {"base": "有机肥+磷钾肥", "top": "伸蔓期控氮，结果期重施钾肥"},
-    "planting": {"depthCm": 2, "spacingCm": 45, "rowSpacingCm": 175, "germinationDays": 7, "maturityDays": 90},
-    "nutrients": ["番茄红素", "维生素C", "钾"],
-    "cautions": ["极不耐涝", "需充足磷钾", "忌连作"],
-    "suitableClimates": ["warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "疏松沙质土",
+      "phMin": 5.5,
+      "phMax": 7.0,
+      "drainage": "极好"
+    },
+    "fertilizer": {
+      "base": "有机肥+磷钾肥",
+      "top": "伸蔓期控氮，结果期重施钾肥"
+    },
+    "planting": {
+      "depthCm": 2,
+      "spacingCm": 45,
+      "rowSpacingCm": 175,
+      "germinationDays": 7,
+      "maturityDays": 90
+    },
+    "nutrients": [
+      "番茄红素",
+      "维生素C",
+      "钾"
+    ],
+    "cautions": [
+      "极不耐涝",
+      "需充足磷钾",
+      "忌连作"
+    ],
+    "suitableClimates": [
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "tg",
@@ -517,12 +1436,38 @@
     "sunlight": "fullSun",
     "minTemp": 20,
     "maxTemp": 35,
-    "soil": {"type": "疏松肥沃", "phMin": 6.0, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥+磷钾肥", "top": "结果期重施钾肥"},
-    "planting": {"depthCm": 2, "spacingCm": 45, "rowSpacingCm": 125, "germinationDays": 6, "maturityDays": 80},
-    "nutrients": ["维生素C", "钾", "葡萄糖"],
-    "cautions": ["需搭架", "不耐涝", "成熟期需控水增甜度"],
-    "suitableClimates": ["warm", "subtropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥+磷钾肥",
+      "top": "结果期重施钾肥"
+    },
+    "planting": {
+      "depthCm": 2,
+      "spacingCm": 45,
+      "rowSpacingCm": 125,
+      "germinationDays": 6,
+      "maturityDays": 80
+    },
+    "nutrients": [
+      "维生素C",
+      "钾",
+      "葡萄糖"
+    ],
+    "cautions": [
+      "需搭架",
+      "不耐涝",
+      "成熟期需控水增甜度"
+    ],
+    "suitableClimates": [
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
   },
   {
     "id": "ng",
@@ -532,12 +1477,41 @@
     "sunlight": "fullSun",
     "minTemp": 15,
     "maxTemp": 30,
-    "soil": {"type": "不挑土疏松即可", "phMin": 5.5, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥", "top": "结果期增施钾肥"},
-    "planting": {"depthCm": 3, "spacingCm": 90, "rowSpacingCm": 175, "germinationDays": 6, "maturityDays": 75},
-    "nutrients": ["胡萝卜素", "维生素C", "钴"],
-    "cautions": ["耐旱", "不耐涝", "可爬地或搭架"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "不挑土疏松即可",
+      "phMin": 5.5,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "结果期增施钾肥"
+    },
+    "planting": {
+      "depthCm": 3,
+      "spacingCm": 90,
+      "rowSpacingCm": 175,
+      "germinationDays": 6,
+      "maturityDays": 75
+    },
+    "nutrients": [
+      "胡萝卜素",
+      "维生素C",
+      "钴"
+    ],
+    "cautions": [
+      "耐旱",
+      "不耐涝",
+      "可爬地或搭架"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "ymc",
@@ -547,12 +1521,39 @@
     "sunlight": "partialSun",
     "minTemp": 8,
     "maxTemp": 22,
-    "soil": {"type": "疏松肥沃", "phMin": 6.0, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥", "top": "氮肥为主"},
-    "planting": {"depthCm": 1, "spacingCm": 22, "rowSpacingCm": 28, "germinationDays": 6, "maturityDays": 50},
-    "nutrients": ["维生素C", "莴苣素", "钾"],
-    "cautions": ["耐热性优于生菜", "注意防治霜霉病"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "氮肥为主"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 22,
+      "rowSpacingCm": 28,
+      "germinationDays": 6,
+      "maturityDays": 50
+    },
+    "nutrients": [
+      "维生素C",
+      "莴苣素",
+      "钾"
+    ],
+    "cautions": [
+      "耐热性优于生菜",
+      "注意防治霜霉病"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
   },
   {
     "id": "zs",
@@ -562,12 +1563,39 @@
     "sunlight": "fullSun",
     "minTemp": 15,
     "maxTemp": 28,
-    "soil": {"type": "疏松肥沃", "phMin": 5.5, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥", "top": "氮肥为主"},
-    "planting": {"depthCm": 1, "spacingCm": 25, "rowSpacingCm": 35, "germinationDays": 7, "maturityDays": 70},
-    "nutrients": ["紫苏醛", "维生素C", "胡萝卜素"],
-    "cautions": ["耐热不耐寒", "可多次采收", "夏季开花前采收最佳"],
-    "suitableClimates": ["warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 5.5,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "氮肥为主"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 25,
+      "rowSpacingCm": 35,
+      "germinationDays": 7,
+      "maturityDays": 70
+    },
+    "nutrients": [
+      "紫苏醛",
+      "维生素C",
+      "胡萝卜素"
+    ],
+    "cautions": [
+      "耐热不耐寒",
+      "可多次采收",
+      "夏季开花前采收最佳"
+    ],
+    "suitableClimates": [
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "lb",
@@ -577,12 +1605,39 @@
     "sunlight": "fullSun",
     "minTemp": 15,
     "maxTemp": 30,
-    "soil": {"type": "疏松肥沃", "phMin": 6.0, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥", "top": "氮肥为主薄肥勤施"},
-    "planting": {"depthCm": 1, "spacingCm": 25, "rowSpacingCm": 30, "germinationDays": 7, "maturityDays": 50},
-    "nutrients": ["芳樟醇", "维生素C", "胡萝卜素"],
-    "cautions": ["耐热不耐寒", "及时摘心促分枝", "花后叶片变苦"],
-    "suitableClimates": ["warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "氮肥为主薄肥勤施"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 25,
+      "rowSpacingCm": 30,
+      "germinationDays": 7,
+      "maturityDays": 50
+    },
+    "nutrients": [
+      "芳樟醇",
+      "维生素C",
+      "胡萝卜素"
+    ],
+    "cautions": [
+      "耐热不耐寒",
+      "及时摘心促分枝",
+      "花后叶片变苦"
+    ],
+    "suitableClimates": [
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "tbc",
@@ -592,12 +1647,38 @@
     "sunlight": "fullSun",
     "minTemp": 10,
     "maxTemp": 22,
-    "soil": {"type": "疏松沙壤土", "phMin": 6.0, "phMax": 7.5, "drainage": "良好"},
-    "fertilizer": {"base": "磷钾肥为主", "top": "避免氮肥过多"},
-    "planting": {"depthCm": 2, "spacingCm": 10, "rowSpacingCm": 28, "germinationDays": 10, "maturityDays": 75},
-    "nutrients": ["甜菜碱", "维生素C", "钾"],
-    "cautions": ["土壤需疏松否则肉质根易畸形", "耐寒"],
-    "suitableClimates": ["cold", "temperate", "warm", "plateau"]
+    "soil": {
+      "type": "疏松沙壤土",
+      "phMin": 6.0,
+      "phMax": 7.5,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "磷钾肥为主",
+      "top": "避免氮肥过多"
+    },
+    "planting": {
+      "depthCm": 2,
+      "spacingCm": 10,
+      "rowSpacingCm": 28,
+      "germinationDays": 10,
+      "maturityDays": 75
+    },
+    "nutrients": [
+      "甜菜碱",
+      "维生素C",
+      "钾"
+    ],
+    "cautions": [
+      "土壤需疏松否则肉质根易畸形",
+      "耐寒"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "plateau"
+    ]
   },
   {
     "id": "lsc",
@@ -607,12 +1688,38 @@
     "sunlight": "fullSun",
     "minTemp": 10,
     "maxTemp": 25,
-    "soil": {"type": "土层深厚疏松沙质土", "phMin": 6.0, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥+磷钾肥", "top": "氮磷钾均衡"},
-    "planting": {"depthCm": 10, "spacingCm": 35, "rowSpacingCm": 135, "germinationDays": 20, "maturityDays": 365},
-    "nutrients": ["天门冬氨酸", "维生素C", "钾"],
-    "cautions": ["多年生可连续采收10-15年", "定植后前两年不采收"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical"]
+    "soil": {
+      "type": "土层深厚疏松沙质土",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥+磷钾肥",
+      "top": "氮磷钾均衡"
+    },
+    "planting": {
+      "depthCm": 10,
+      "spacingCm": 35,
+      "rowSpacingCm": 135,
+      "germinationDays": 20,
+      "maturityDays": 365
+    },
+    "nutrients": [
+      "天门冬氨酸",
+      "维生素C",
+      "钾"
+    ],
+    "cautions": [
+      "多年生可连续采收10-15年",
+      "定植后前两年不采收"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical"
+    ]
   },
   {
     "id": "hhc",
@@ -622,12 +1729,40 @@
     "sunlight": "partialSun",
     "minTemp": 5,
     "maxTemp": 28,
-    "soil": {"type": "疏松肥沃微酸至中性", "phMin": 6.0, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥", "top": "氮磷钾均衡"},
-    "planting": {"depthCm": 8, "spacingCm": 40, "rowSpacingCm": 70, "germinationDays": 20, "maturityDays": 365},
-    "nutrients": ["蛋白质", "胡萝卜素", "钾"],
-    "cautions": ["多年生", "花蕾采收后晒干为金针菜", "耐寒"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃微酸至中性",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "氮磷钾均衡"
+    },
+    "planting": {
+      "depthCm": 8,
+      "spacingCm": 40,
+      "rowSpacingCm": 70,
+      "germinationDays": 20,
+      "maturityDays": 365
+    },
+    "nutrients": [
+      "蛋白质",
+      "胡萝卜素",
+      "钾"
+    ],
+    "cautions": [
+      "多年生",
+      "花蕾采收后晒干为金针菜",
+      "耐寒"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
   },
   {
     "id": "mec",
@@ -637,12 +1772,39 @@
     "sunlight": "partialSun",
     "minTemp": 20,
     "maxTemp": 30,
-    "soil": {"type": "疏松肥沃", "phMin": 5.5, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥", "top": "氮肥为主"},
-    "planting": {"depthCm": 2, "spacingCm": 30, "rowSpacingCm": 40, "germinationDays": 10, "maturityDays": 45},
-    "nutrients": ["维生素C", "胡萝卜素", "钙"],
-    "cautions": ["耐热不耐寒", "藤蔓可攀援", "多次采收"],
-    "suitableClimates": ["warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 5.5,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "氮肥为主"
+    },
+    "planting": {
+      "depthCm": 2,
+      "spacingCm": 30,
+      "rowSpacingCm": 40,
+      "germinationDays": 10,
+      "maturityDays": 45
+    },
+    "nutrients": [
+      "维生素C",
+      "胡萝卜素",
+      "钙"
+    ],
+    "cautions": [
+      "耐热不耐寒",
+      "藤蔓可攀援",
+      "多次采收"
+    ],
+    "suitableClimates": [
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "axc",
@@ -652,12 +1814,39 @@
     "sunlight": "fullSun",
     "minTemp": 15,
     "maxTemp": 30,
-    "soil": {"type": "疏松肥沃", "phMin": 5.5, "phMax": 7.0, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥", "top": "氮肥为主"},
-    "planting": {"depthCm": 1, "spacingCm": 20, "rowSpacingCm": 25, "germinationDays": 5, "maturityDays": 40},
-    "nutrients": ["维生素C", "铁", "胡萝卜素"],
-    "cautions": ["耐热不耐寒", "夏季生长快", "可多次采收"],
-    "suitableClimates": ["warm", "subtropical", "tropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 5.5,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "氮肥为主"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 20,
+      "rowSpacingCm": 25,
+      "germinationDays": 5,
+      "maturityDays": 40
+    },
+    "nutrients": [
+      "维生素C",
+      "铁",
+      "胡萝卜素"
+    ],
+    "cautions": [
+      "耐热不耐寒",
+      "夏季生长快",
+      "可多次采收"
+    ],
+    "suitableClimates": [
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   },
   {
     "id": "nsc",
@@ -667,12 +1856,39 @@
     "sunlight": "partialSun",
     "minTemp": 5,
     "maxTemp": 25,
-    "soil": {"type": "疏松肥沃", "phMin": 6.0, "phMax": 7.5, "drainage": "良好"},
-    "fertilizer": {"base": "有机肥", "top": "需钾肥"},
-    "planting": {"depthCm": 2, "spacingCm": 28, "rowSpacingCm": 45, "germinationDays": 7, "maturityDays": 70},
-    "nutrients": ["甜菜碱", "维生素C", "钾"],
-    "cautions": ["耐寒不耐热", "可多次剥叶采收"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.5,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "需钾肥"
+    },
+    "planting": {
+      "depthCm": 2,
+      "spacingCm": 28,
+      "rowSpacingCm": 45,
+      "germinationDays": 7,
+      "maturityDays": 70
+    },
+    "nutrients": [
+      "甜菜碱",
+      "维生素C",
+      "钾"
+    ],
+    "cautions": [
+      "耐寒不耐热",
+      "可多次剥叶采收"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
   },
   {
     "id": "cd",
@@ -682,11 +1898,712 @@
     "sunlight": "fullSun",
     "minTemp": 5,
     "maxTemp": 20,
-    "soil": {"type": "疏松肥沃", "phMin": 6.0, "phMax": 7.5, "drainage": "良好"},
-    "fertilizer": {"base": "磷钾肥为主", "top": "避免氮肥过多"},
-    "planting": {"depthCm": 5, "spacingCm": 20, "rowSpacingCm": 40, "germinationDays": 10, "maturityDays": 120},
-    "nutrients": ["蛋白质", "膳食纤维", "钾"],
-    "cautions": ["耐寒不耐热", "不耐涝", "可秋播过冬"],
-    "suitableClimates": ["cold", "temperate", "warm", "subtropical", "plateau"]
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.5,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "磷钾肥为主",
+      "top": "避免氮肥过多"
+    },
+    "planting": {
+      "depthCm": 5,
+      "spacingCm": 20,
+      "rowSpacingCm": 40,
+      "germinationDays": 10,
+      "maturityDays": 120
+    },
+    "nutrients": [
+      "蛋白质",
+      "膳食纤维",
+      "钾"
+    ],
+    "cautions": [
+      "耐寒不耐热",
+      "不耐涝",
+      "可秋播过冬"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
+  },
+  {
+    "id": "fsg",
+    "name": "佛手瓜",
+    "alias": "瓦瓜/洋丝瓜",
+    "category": "fruit",
+    "sunlight": "partialSun",
+    "minTemp": 18,
+    "maxTemp": 28,
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "氮磷钾均衡"
+    },
+    "planting": {
+      "depthCm": 8,
+      "spacingCm": 250,
+      "rowSpacingCm": 300,
+      "germinationDays": 15,
+      "maturityDays": 100
+    },
+    "nutrients": [
+      "维生素C",
+      "钾",
+      "叶酸"
+    ],
+    "cautions": [
+      "需大型棚架",
+      "不耐寒",
+      "地下根可越冬"
+    ],
+    "suitableClimates": [
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
+  },
+  {
+    "id": "ll",
+    "name": "罗勒",
+    "alias": "九层塔/兰香",
+    "category": "herb",
+    "sunlight": "fullSun",
+    "minTemp": 15,
+    "maxTemp": 30,
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "氮肥为主，薄肥勤施"
+    },
+    "planting": {
+      "depthCm": 0.5,
+      "spacingCm": 25,
+      "rowSpacingCm": 30,
+      "germinationDays": 7,
+      "maturityDays": 50
+    },
+    "nutrients": [
+      "维生素K",
+      "维生素A",
+      "铁"
+    ],
+    "cautions": [
+      "耐热不耐寒",
+      "及时摘心促分枝",
+      "花后叶片变苦"
+    ],
+    "suitableClimates": [
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
+  },
+  {
+    "id": "zmc",
+    "name": "芝麻菜",
+    "alias": "火箭生菜",
+    "category": "leafy",
+    "sunlight": "partialSun",
+    "minTemp": 8,
+    "maxTemp": 25,
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.5,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "氮肥为主"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 15,
+      "rowSpacingCm": 20,
+      "germinationDays": 5,
+      "maturityDays": 30
+    },
+    "nutrients": [
+      "维生素C",
+      "维生素K",
+      "硝酸盐"
+    ],
+    "cautions": [
+      "耐寒不耐热",
+      "夏季种植需遮阳",
+      "味道辛辣"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
+  },
+  {
+    "id": "tbcg",
+    "name": "甜菜根",
+    "alias": "红菜头/火焰菜",
+    "category": "root",
+    "sunlight": "fullSun",
+    "minTemp": 8,
+    "maxTemp": 25,
+    "soil": {
+      "type": "疏松沙壤土",
+      "phMin": 6.0,
+      "phMax": 7.5,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "磷钾肥为主",
+      "top": "避免氮肥过多"
+    },
+    "planting": {
+      "depthCm": 1.5,
+      "spacingCm": 10,
+      "rowSpacingCm": 30,
+      "germinationDays": 10,
+      "maturityDays": 75
+    },
+    "nutrients": [
+      "硝酸盐",
+      "维生素C",
+      "钾"
+    ],
+    "cautions": [
+      "土壤需疏松否则根易畸形",
+      "耐寒"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical"
+    ]
+  },
+  {
+    "id": "jbj",
+    "name": "菊苣",
+    "alias": "苦白菜",
+    "category": "leafy",
+    "sunlight": "partialSun",
+    "minTemp": 5,
+    "maxTemp": 22,
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "氮肥为主"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 25,
+      "rowSpacingCm": 35,
+      "germinationDays": 8,
+      "maturityDays": 100
+    },
+    "nutrients": [
+      "维生素C",
+      "苦苣素",
+      "膳食纤维"
+    ],
+    "cautions": [
+      "耐寒",
+      "可软化栽培",
+      "微苦"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm"
+    ]
+  },
+  {
+    "id": "ac",
+    "name": "艾草",
+    "alias": "艾蒿/艾叶",
+    "category": "herb",
+    "sunlight": "fullSun",
+    "minTemp": 5,
+    "maxTemp": 30,
+    "soil": {
+      "type": "不挑土",
+      "phMin": 6.0,
+      "phMax": 8.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "一般有机肥",
+      "top": "基本无需追肥"
+    },
+    "planting": {
+      "depthCm": 0.5,
+      "spacingCm": 30,
+      "rowSpacingCm": 40,
+      "germinationDays": 10,
+      "maturityDays": 60
+    },
+    "nutrients": [
+      "维生素A",
+      "维生素C",
+      "艾蒿油"
+    ],
+    "cautions": [
+      "多年生",
+      "耐寒耐旱",
+      "嫩叶可食用"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
+  },
+  {
+    "id": "ls",
+    "name": "芦笋",
+    "alias": "石刁柏/龙须菜",
+    "category": "root",
+    "sunlight": "fullSun",
+    "minTemp": 10,
+    "maxTemp": 28,
+    "soil": {
+      "type": "土层深厚沙质土",
+      "phMin": 6.0,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥+磷钾肥",
+      "top": "氮磷钾均衡"
+    },
+    "planting": {
+      "depthCm": 10,
+      "spacingCm": 35,
+      "rowSpacingCm": 130,
+      "germinationDays": 21,
+      "maturityDays": 730
+    },
+    "nutrients": [
+      "叶酸",
+      "维生素K",
+      "膳食纤维"
+    ],
+    "cautions": [
+      "多年生可采收10-15年",
+      "定植后前两年不采收",
+      "需深厚土层"
+    ],
+    "suitableClimates": [
+      "temperate",
+      "warm",
+      "subtropical"
+    ]
+  },
+  {
+    "id": "cxl",
+    "name": "穿心莲",
+    "alias": "一见喜/苦胆草",
+    "category": "leafy",
+    "sunlight": "fullSun",
+    "minTemp": 15,
+    "maxTemp": 32,
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 5.5,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "氮肥为主"
+    },
+    "planting": {
+      "depthCm": 0.5,
+      "spacingCm": 20,
+      "rowSpacingCm": 25,
+      "germinationDays": 7,
+      "maturityDays": 60
+    },
+    "nutrients": [
+      "维生素C",
+      "穿心莲内酯",
+      "苦味素"
+    ],
+    "cautions": [
+      "耐热不耐寒",
+      "微苦",
+      "可凉拌"
+    ],
+    "suitableClimates": [
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
+  },
+  {
+    "id": "zbthk",
+    "name": "紫背天葵",
+    "alias": "血皮菜/红背菜",
+    "category": "leafy",
+    "sunlight": "shade",
+    "minTemp": 10,
+    "maxTemp": 28,
+    "soil": {
+      "type": "疏松腐殖质土",
+      "phMin": 5.5,
+      "phMax": 7.0,
+      "drainage": "一般"
+    },
+    "fertilizer": {
+      "base": "腐熟有机肥",
+      "top": "氮肥为主"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 25,
+      "rowSpacingCm": 30,
+      "germinationDays": 10,
+      "maturityDays": 45
+    },
+    "nutrients": [
+      "维生素C",
+      "铁",
+      "花青素"
+    ],
+    "cautions": [
+      "耐阴",
+      "可多次采收",
+      "夏季需遮阳"
+    ],
+    "suitableClimates": [
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
+  },
+  {
+    "id": "ct",
+    "name": "草头",
+    "alias": "苜蓿/紫花苜蓿",
+    "category": "leafy",
+    "sunlight": "partialSun",
+    "minTemp": 5,
+    "maxTemp": 25,
+    "soil": {
+      "type": "疏松土",
+      "phMin": 6.0,
+      "phMax": 7.5,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "少量有机肥",
+      "top": "基本无需追肥"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 10,
+      "rowSpacingCm": 15,
+      "germinationDays": 3,
+      "maturityDays": 25
+    },
+    "nutrients": [
+      "维生素K",
+      "维生素C",
+      "蛋白质"
+    ],
+    "cautions": [
+      "生长极快",
+      "7-10天可收芽苗菜",
+      "可多次采收"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
+  },
+  {
+    "id": "wdj",
+    "name": "豌豆尖",
+    "alias": "豌豆苗/龙须菜",
+    "category": "leafy",
+    "sunlight": "partialSun",
+    "minTemp": 5,
+    "maxTemp": 22,
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.5,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "氮肥为主"
+    },
+    "planting": {
+      "depthCm": 2,
+      "spacingCm": 10,
+      "rowSpacingCm": 15,
+      "germinationDays": 5,
+      "maturityDays": 25
+    },
+    "nutrients": [
+      "维生素C",
+      "维生素A",
+      "叶酸"
+    ],
+    "cautions": [
+      "耐寒",
+      "掐嫩尖促分枝",
+      "可多次采收"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
+  },
+  {
+    "id": "hsy",
+    "name": "红薯叶",
+    "alias": "地瓜叶/番薯叶",
+    "category": "leafy",
+    "sunlight": "partialSun",
+    "minTemp": 15,
+    "maxTemp": 32,
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 5.5,
+      "phMax": 6.5,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "氮肥为主"
+    },
+    "planting": {
+      "depthCm": 3,
+      "spacingCm": 25,
+      "rowSpacingCm": 40,
+      "germinationDays": 5,
+      "maturityDays": 35
+    },
+    "nutrients": [
+      "维生素C",
+      "维生素A",
+      "铁"
+    ],
+    "cautions": [
+      "扦插繁殖",
+      "多次采收",
+      "耐热"
+    ],
+    "suitableClimates": [
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
+  },
+  {
+    "id": "npc",
+    "name": "牛皮菜",
+    "alias": "厚皮菜/瑞士甜菜",
+    "category": "leafy",
+    "sunlight": "partialSun",
+    "minTemp": 5,
+    "maxTemp": 25,
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 6.0,
+      "phMax": 7.5,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "需钾肥"
+    },
+    "planting": {
+      "depthCm": 1.5,
+      "spacingCm": 28,
+      "rowSpacingCm": 45,
+      "germinationDays": 7,
+      "maturityDays": 70
+    },
+    "nutrients": [
+      "维生素A",
+      "维生素C",
+      "钾"
+    ],
+    "cautions": [
+      "耐寒不耐热",
+      "可多次剥叶采收",
+      "需钾肥"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
+  },
+  {
+    "id": "tsq",
+    "name": "藤三七",
+    "alias": "落葵薯/川七",
+    "category": "leafy",
+    "sunlight": "shade",
+    "minTemp": 10,
+    "maxTemp": 28,
+    "soil": {
+      "type": "疏松腐殖质土",
+      "phMin": 5.5,
+      "phMax": 7.0,
+      "drainage": "一般"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "氮肥为主"
+    },
+    "planting": {
+      "depthCm": 1,
+      "spacingCm": 30,
+      "rowSpacingCm": 40,
+      "germinationDays": 15,
+      "maturityDays": 40
+    },
+    "nutrients": [
+      "维生素C",
+      "黏多糖",
+      "膳食纤维"
+    ],
+    "cautions": [
+      "耐阴",
+      "匍匐茎繁殖",
+      "多次采收"
+    ],
+    "suitableClimates": [
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
+  },
+  {
+    "id": "szc",
+    "name": "扫帚菜",
+    "alias": "地肤/扫帚苗",
+    "category": "leafy",
+    "sunlight": "fullSun",
+    "minTemp": 10,
+    "maxTemp": 32,
+    "soil": {
+      "type": "不挑土",
+      "phMin": 6.0,
+      "phMax": 8.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "少量有机肥",
+      "top": "基本无需追肥"
+    },
+    "planting": {
+      "depthCm": 0.5,
+      "spacingCm": 25,
+      "rowSpacingCm": 30,
+      "germinationDays": 7,
+      "maturityDays": 45
+    },
+    "nutrients": [
+      "维生素A",
+      "维生素C",
+      "胡萝卜素"
+    ],
+    "cautions": [
+      "耐旱耐盐碱",
+      "嫩苗可作菜",
+      "老后作扫帚"
+    ],
+    "suitableClimates": [
+      "cold",
+      "temperate",
+      "warm",
+      "subtropical",
+      "plateau"
+    ]
+  },
+  {
+    "id": "am",
+    "name": "苋菜",
+    "alias": "米苋/三色苋",
+    "category": "leafy",
+    "sunlight": "fullSun",
+    "minTemp": 15,
+    "maxTemp": 35,
+    "soil": {
+      "type": "疏松肥沃",
+      "phMin": 5.5,
+      "phMax": 7.0,
+      "drainage": "良好"
+    },
+    "fertilizer": {
+      "base": "有机肥",
+      "top": "氮肥为主"
+    },
+    "planting": {
+      "depthCm": 0.8,
+      "spacingCm": 20,
+      "rowSpacingCm": 25,
+      "germinationDays": 5,
+      "maturityDays": 40
+    },
+    "nutrients": [
+      "维生素C",
+      "维生素A",
+      "铁"
+    ],
+    "cautions": [
+      "耐热不耐寒",
+      "夏季生长快",
+      "可多次采收"
+    ],
+    "suitableClimates": [
+      "warm",
+      "subtropical",
+      "tropical",
+      "plateau"
+    ]
   }
 ]

@@ -1,7 +1,11 @@
-import '../core/constants/app_constants.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import '../core/constants/enums.dart';
+import '../core/constants/app_constants.dart';
 import 'datasources/database_helper.dart';
 import 'models/city_model.dart';
+import 'models/vegetable_model.dart';
 
 /// 应用数据初始化器
 /// 在首次启动时将预设数据写入数据库
@@ -15,6 +19,8 @@ class DataSeeder {
     final isEmpty = await _dbHelper.isDatabaseEmpty();
     if (isEmpty) {
       await _seedCities();
+      await _seedVegetables();
+      await _seedPlantingCalendar();
     }
   }
 
@@ -28,13 +34,67 @@ class DataSeeder {
       );
     }).toList();
 
-    await _dbHelper.database.then((db) async {
-      for (final city in cities) {
+    final db = await _dbHelper.database;
+    for (final city in cities) {
+      await db.insert(
+        'cities',
+        city.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
+    }
+  }
+
+  /// 播种蔬菜数据
+  Future<void> _seedVegetables() async {
+    // 从 assets 加载 JSON
+    final jsonString = await rootBundle.loadString('assets/data/vegetables.json');
+    final List<dynamic> jsonList = json.decode(jsonString);
+
+    final db = await _dbHelper.database;
+
+    for (final item in jsonList) {
+      final vegetable = VegetableModel.fromJson(item as Map<String, dynamic>);
+      await db.insert(
+        'vegetables',
+        vegetable.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
+    }
+  }
+
+  /// 播种种植日历数据
+  Future<void> _seedPlantingCalendar() async {
+    // 从 assets 加载 JSON
+    final jsonString = await rootBundle.loadString('assets/data/planting_calendar.json');
+    final Map<String, dynamic> jsonMap = json.decode(jsonString);
+
+    final db = await _dbHelper.database;
+
+    // 遍历每个气候区
+    for (final climateEntry in jsonMap.entries) {
+      final climate = ClimateZone.fromString(climateEntry.key);
+      if (climate == null) continue;
+
+      final monthData = climateEntry.value as Map<String, dynamic>;
+
+      // 遍历每个月份
+      for (final monthEntry in monthData.entries) {
+        final month = int.tryParse(monthEntry.key);
+        if (month == null) continue;
+
+        final vegIds = (monthEntry.value as List<dynamic>).cast<String>();
+
+        // 插入或更新
         await db.insert(
-          'cities',
-          city.toMap(),
+          'planting_calendar',
+          {
+            'climate_zone': climate.name,
+            'month': month,
+            'vegetable_ids': vegIds.join(','),
+          },
+          conflictAlgorithm: ConflictAlgorithm.replace,
         );
       }
-    });
+    }
   }
 }
