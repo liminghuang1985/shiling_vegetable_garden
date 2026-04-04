@@ -53,8 +53,8 @@ class _HomePageState extends ConsumerState<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 _buildNavItem(0, Icons.eco_outlined, Icons.eco, '首页'),
-                _buildNavItem(1, Icons.yard_outlined, Icons.yard, '菜园'),
-                _buildNavItem(2, Icons.calendar_month_outlined, Icons.calendar_month, '日历'),
+                _buildNavItem(1, Icons.yard_outlined, Icons.yard, '我的菜园'),
+                _buildNavItem(2, Icons.calendar_month_outlined, Icons.calendar_month, '种植日历'),
                 _buildNavItem(3, Icons.settings_outlined, Icons.settings, '设置'),
               ],
             ),
@@ -214,13 +214,21 @@ class _HomeContent extends ConsumerWidget {
                               color: Colors.white.withValues(alpha: 0.2),
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: Text(
-                              DateTimeUtils.getMonthName(currentMonth),
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
+                            child: Column(
+                              children: [
+                                Text(
+                                  DateTimeUtils.getMonthName(currentMonth),
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  _getSeasonEmoji(currentMonth),
+                                  style: const TextStyle(fontSize: 20),
+                                ),
+                              ],
                             ),
                           ),
                           const SizedBox(width: 16),
@@ -243,6 +251,21 @@ class _HomeContent extends ConsumerWidget {
                                     fontSize: 13,
                                     color: Colors.white.withValues(alpha: 0.8),
                                   ),
+                                ),
+                                const SizedBox(height: 6),
+                                // 温度范围 + 季节标识
+                                Row(
+                                  children: [
+                                    _TempBadge(
+                                      icon: '🌡️',
+                                      text: '${_getMinTemp(selectedClimate)}~${_getMaxTemp(selectedClimate)}°C',
+                                    ),
+                                    const SizedBox(width: 8),
+                                    _TempBadge(
+                                      icon: _getSeasonEmoji(currentMonth),
+                                      text: '${_getSeasonVerb(currentMonth)}适种',
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -331,11 +354,11 @@ class _HomeContent extends ConsumerWidget {
             return SliverPadding(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 100),
               sliver: SliverGrid(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.72,
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: MediaQuery.of(context).size.width > 600 ? 3 : 2,
+                  childAspectRatio: 0.82,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
                 ),
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
@@ -402,33 +425,66 @@ class _HomeContent extends ConsumerWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            padding: const EdgeInsets.all(24),
-            decoration: BoxDecoration(
-              color: AppTheme.primaryGreen.withValues(alpha: 0.1),
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(
-              Icons.eco_outlined,
-              size: 64,
-              color: AppTheme.primaryGreen,
-            ),
-          ),
-          const SizedBox(height: 24),
+          const Text('🌱', style: TextStyle(fontSize: 64)),
+          const SizedBox(height: 16),
           Text(
-            '暂无推荐蔬菜',
-            style: Theme.of(context).textTheme.titleLarge,
+            '还没有选择城市',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 8),
           Text(
-            '请先选择城市和阳台朝向',
-            style: TextStyle(
-              color: AppTheme.textSecondary,
+            '点击上方城市名称，选择你所在的城市\n即可查看当月适合种植的蔬菜',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 14, color: AppTheme.textSecondary),
+          ),
+          const SizedBox(height: 24),
+          ElevatedButton.icon(
+            onPressed: () => _showCitySelection(context),
+            icon: const Icon(Icons.location_city),
+            label: const Text('选择城市'),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppTheme.primaryGreen,
+              foregroundColor: Colors.white,
             ),
           ),
-
         ],
       ),
+    );
+  }
+
+  String _getSeasonEmoji(int month) {
+    if (month >= 3 && month <= 5) return '🌱';
+    if (month >= 6 && month <= 8) return '☀️';
+    if (month >= 9 && month <= 11) return '🍂';
+    return '❄️';
+  }
+
+  String _getMinTemp(ClimateZone zone) {
+    switch (zone) {
+      case ClimateZone.coldTemperate: return '-5';
+      case ClimateZone.temperate: return '0';
+      case ClimateZone.warmTemperate: return '5';
+      case ClimateZone.subtropical: return '10';
+      case ClimateZone.tropical: return '18';
+      case ClimateZone.plateau: return '0';
+    }
+  }
+
+  String _getMaxTemp(ClimateZone zone) {
+    switch (zone) {
+      case ClimateZone.coldTemperate: return '25';
+      case ClimateZone.temperate: return '30';
+      case ClimateZone.warmTemperate: return '33';
+      case ClimateZone.subtropical: return '35';
+      case ClimateZone.tropical: return '38';
+      case ClimateZone.plateau: return '28';
+    }
+  }
+
+  void _showCitySelection(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => const CitySelectionPage()),
     );
   }
 
@@ -471,6 +527,33 @@ class _HomeContent extends ConsumerWidget {
     if (month >= 5 && month <= 7) return '夏播';
     if (month >= 8 && month <= 10) return '秋播';
     return '冬播';
+  }
+}
+
+/// 温度+季节标签
+class _TempBadge extends StatelessWidget {
+  final String icon;
+  final String text;
+
+  const _TempBadge({required this.icon, required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.2),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(icon, style: const TextStyle(fontSize: 12)),
+          const SizedBox(width: 4),
+          Text(text, style: const TextStyle(fontSize: 12, color: Colors.white)),
+        ],
+      ),
+    );
   }
 }
 

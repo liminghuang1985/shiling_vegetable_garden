@@ -198,26 +198,18 @@ class _CitySelectionPageState extends ConsumerState<CitySelectionPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // 省份标题
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(16, 20, 16, 8),
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                          color: AppTheme.primaryGreen.withValues(alpha: 0.1),
                           child: Row(
                             children: [
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                  vertical: 4,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: AppTheme.primaryGreen.withValues(alpha: 0.1),
-                                  borderRadius: BorderRadius.circular(6),
-                                ),
-                                child: Text(
-                                  province,
-                                  style: const TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w600,
-                                    color: AppTheme.primaryGreen,
-                                  ),
+                              Text(
+                                province,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppTheme.primaryGreen,
                                 ),
                               ),
                               const SizedBox(width: 8),
@@ -234,7 +226,7 @@ class _CitySelectionPageState extends ConsumerState<CitySelectionPage> {
 
                         // 城市列表
                         ...provinceCities.map(
-                          (city) => _buildCityTile(city, currentClimate),
+                          (city) => _buildCityTile(city, currentClimate, provinceCities),
                         ),
                       ],
                     );
@@ -313,105 +305,105 @@ class _CitySelectionPageState extends ConsumerState<CitySelectionPage> {
     );
   }
 
-  Widget _buildCityTile(City city, ClimateZone currentClimate) {
+
+  Widget _buildCityTile(City city, ClimateZone currentClimate, List<City> provinceCities) {
     final isSelected = city.climate == currentClimate;
+    final isFirstInProvince = provinceCities.indexOf(city) == 0;
 
-    return InkWell(
-      onTap: () async {
-        // 持久化城市选择
-        final settings = SettingsLocalDatasource();
-        await settings.saveSelectedCityId(city.id ?? 0);
-        await settings.saveSelectedClimate(city.climate.name);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (!isFirstInProvince)
+          const Divider(height: 1, indent: 16, endIndent: 16),
+        InkWell(
+          onTap: () async {
+            // 持久化城市选择
+            final settings = SettingsLocalDatasource();
+            await settings.saveSelectedCityId(city.id ?? 0);
+            await settings.saveSelectedClimate(city.climate.name);
 
-        ref.read(selectedClimateZoneProvider.notifier).state = city.climate;
-        ref.invalidate(currentRecommendedVegetablesProvider);
-        Navigator.pop(context);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Row(
+            ref.read(selectedClimateZoneProvider.notifier).state = city.climate;
+            ref.invalidate(currentRecommendedVegetablesProvider);
+            if (!context.mounted) return;
+            Navigator.pop(context);
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Row(
+                  children: [
+                    Text(_getClimateEmoji(city.climate)),
+                    const SizedBox(width: 8),
+                    Text('已切换到\${city.climate.label} · \${city.name}'),
+                  ],
+                ),
+                backgroundColor: AppTheme.primaryGreen,
+                behavior: SnackBarBehavior.floating,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                duration: const Duration(seconds: 2),
+              ),
+            );
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            decoration: BoxDecoration(
+              color: isSelected
+                  ? AppTheme.primaryGreen.withValues(alpha: 0.1)
+                  : Colors.white,
+            ),
+            child: Row(
               children: [
-                Text(_getClimateEmoji(city.climate)),
-                const SizedBox(width: 8),
-                Text('已切换到${city.climate.label} · ${city.name}'),
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: isSelected
+                        ? AppTheme.primaryGreen.withValues(alpha: 0.15)
+                        : AppTheme.background,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Center(
+                    child: Text(
+                      _getClimateEmoji(city.climate),
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        city.name,
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                          color: isSelected ? AppTheme.primaryGreen : AppTheme.textPrimary,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        city.climate.label,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: isSelected
+                              ? AppTheme.primaryGreen.withValues(alpha: 0.7)
+                              : AppTheme.textSecondary,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                if (isSelected)
+                  const Icon(Icons.check_circle, color: AppTheme.primaryGreen, size: 22),
               ],
             ),
-            backgroundColor: AppTheme.primaryGreen,
-            behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            duration: const Duration(seconds: 2),
-          ),
-        );
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? AppTheme.primaryGreen.withValues(alpha: 0.08)
-              : Colors.white,
-          border: Border(
-            bottom: BorderSide(color: Colors.grey.shade200),
           ),
         ),
-        child: Row(
-          children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: isSelected
-                    ? AppTheme.primaryGreen.withValues(alpha: 0.15)
-                    : AppTheme.background,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child: Text(
-                  _getClimateEmoji(city.climate),
-                  style: const TextStyle(fontSize: 20),
-                ),
-              ),
-            ),
-            const SizedBox(width: 14),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    city.name,
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                      color: isSelected
-                          ? AppTheme.primaryGreen
-                          : AppTheme.textPrimary,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    city.climate.label,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: isSelected
-                          ? AppTheme.primaryGreen.withValues(alpha: 0.7)
-                          : AppTheme.textSecondary,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            if (isSelected)
-              const Icon(
-                Icons.check_circle,
-                color: AppTheme.primaryGreen,
-                size: 22,
-              ),
-          ],
-        ),
-      ),
+      ],
     );
   }
-
   Map<String, List<City>> _groupCitiesByProvince(List<City> cities) {
     final Map<String, List<City>> grouped = {};
     for (final city in cities) {
