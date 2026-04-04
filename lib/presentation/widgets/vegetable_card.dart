@@ -68,7 +68,7 @@ class VegetableCard extends StatelessWidget {
                   // 分类 Emoji
                   Center(
                     child: Text(
-                      vegetable.category.emoji,
+                      vegetable.emoji,
                       style: const TextStyle(fontSize: 40),
                     ),
                   ),

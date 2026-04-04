@@ -332,7 +332,7 @@ class _CitySelectionPageState extends ConsumerState<CitySelectionPage> {
                   children: [
                     Text(_getClimateEmoji(city.climate)),
                     const SizedBox(width: 8),
-                    Text('已切换到\${city.climate.label} · \${city.name}'),
+                    Text('已切换到${city.climate.label} · ${city.name}'),
                   ],
                 ),
                 backgroundColor: AppTheme.primaryGreen,

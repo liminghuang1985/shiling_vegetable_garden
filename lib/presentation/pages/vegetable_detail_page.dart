@@ -38,7 +38,7 @@ class VegetableDetailPage extends ConsumerWidget {
                     Row(
                       children: [
                         Text(
-                          vegetable.category.emoji,
+                          vegetable.emoji,
                           style: const TextStyle(fontSize: 48),
                         ),
                         const SizedBox(width: 16),
@@ -60,7 +60,7 @@ class VegetableDetailPage extends ConsumerWidget {
                               const SizedBox(height: 8),
                               Chip(
                                 label: Text(vegetable.category.label),
-                                avatar: Text(vegetable.category.emoji),
+                                avatar: Text(vegetable.emoji),
                               ),
                             ],
                           ),
