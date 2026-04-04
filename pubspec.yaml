@@ -1,0 +1,51 @@
+name: shiling_vegetable_garden
+description: "基于中国气候带的时令蔬菜种植指南 App"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # State Management
+  flutter_riverpod: ^2.6.1
+
+  # Local Database
+  sqflite: ^2.4.2
+  sqflite_common_ffi: ^2.3.4+5
+
+  # Notifications
+  flutter_local_notifications: ^18.0.1
+
+  # File & Path
+  path_provider: ^2.1.5
+  path: ^1.9.1
+
+  # User Preferences
+  shared_preferences: ^2.3.5
+
+  # UUID Generation
+  uuid: ^4.5.1
+
+  # JSON Serialization
+  json_annotation: ^4.9.0
+
+  # Timezone for notifications
+  timezone: ^0.10.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  build_runner: ^2.4.15
+  json_serializable: ^6.9.4
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/data/
