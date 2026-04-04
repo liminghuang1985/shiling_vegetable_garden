@@ -4,6 +4,7 @@ import '../../core/constants/enums.dart';
 import '../../core/theme/app_theme.dart';
 import '../../domain/entities/city.dart';
 import '../providers/providers.dart';
+import '../../data/datasources/settings_local_datasource.dart';
 
 /// 城市选择页
 class CitySelectionPage extends ConsumerStatefulWidget {
@@ -316,7 +317,12 @@ class _CitySelectionPageState extends ConsumerState<CitySelectionPage> {
     final isSelected = city.climate == currentClimate;
 
     return InkWell(
-      onTap: () {
+      onTap: () async {
+        // 持久化城市选择
+        final settings = SettingsLocalDatasource();
+        await settings.saveSelectedCityId(city.id ?? 0);
+        await settings.saveSelectedClimate(city.climate.name);
+
         ref.read(selectedClimateZoneProvider.notifier).state = city.climate;
         ref.invalidate(currentRecommendedVegetablesProvider);
         Navigator.pop(context);

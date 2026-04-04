@@ -5,6 +5,7 @@ import '../../core/utils/date_utils.dart';
 import '../providers/providers.dart';
 import '../widgets/climate_zone_selector.dart';
 import 'vegetable_detail_page.dart';
+import '../../data/datasources/database_helper.dart';
 
 /// 种植日历页
 class PlantingCalendarPage extends ConsumerWidget {
@@ -18,6 +19,32 @@ class PlantingCalendarPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('种植日历'),
+        actions: [
+          IconButton(
+            icon: Text('🔧', style: TextStyle(fontSize: 20)),
+            onPressed: () async {
+              final db = await DatabaseHelper.instance.database;
+              final calCount = (await db.query('planting_calendar')).length;
+              // Test query for plateau/4
+              final april = await db.query(
+                'planting_calendar',
+                where: 'climate_zone = ? AND month = ?',
+                whereArgs: ['plateau', 4],
+              );
+              showDialog(
+                context: context,
+                builder: (_) => AlertDialog(
+                  title: Text('日历Debug'),
+                  content: Text(
+                    '日历总行数: $calCount\n'
+                    '高原4月: ${april.length}行\n'
+                    '${april.isNotEmpty ? april.first['vegetable_ids'] : '无数据'}',
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: Column(
         children: [

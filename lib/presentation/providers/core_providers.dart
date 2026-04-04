@@ -3,6 +3,7 @@ import '../../data/datasources/database_helper.dart';
 import '../../data/datasources/city_local_datasource.dart';
 import '../../data/datasources/vegetable_local_datasource.dart';
 import '../../data/datasources/garden_local_datasource.dart';
+import '../../data/datasources/settings_local_datasource.dart';
 import '../../data/repositories/city_repository_impl.dart';
 import '../../data/repositories/vegetable_repository_impl.dart';
 import '../../data/repositories/garden_repository_impl.dart';
@@ -18,6 +19,11 @@ import '../../core/constants/enums.dart';
 /// 数据库单例
 final databaseHelperProvider = Provider<DatabaseHelper>((ref) {
   return DatabaseHelper.instance;
+});
+
+/// 设置本地数据源（SharedPreferences）
+final settingsLocalDatasourceProvider = Provider<SettingsLocalDatasource>((ref) {
+  return SettingsLocalDatasource();
 });
 
 /// ========== 数据源 Provider ==========

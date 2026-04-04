@@ -4,6 +4,7 @@ import '../../core/constants/enums.dart';
 import '../../data/data_seeder.dart';
 import '../../data/datasources/database_helper.dart';
 import '../providers/providers.dart';
+import '../../data/datasources/settings_local_datasource.dart';
 
 /// 设置页
 class SettingsPage extends ConsumerWidget {
@@ -144,7 +145,11 @@ class SettingsPage extends ConsumerWidget {
                     trailing: isSelected
                         ? const Icon(Icons.check, color: Colors.green)
                         : null,
-                    onTap: () {
+                    onTap: () async {
+                      // 持久化气候带选择
+                      final settings = SettingsLocalDatasource();
+                      await settings.saveSelectedClimate(climate.name);
+
                       ref.read(selectedClimateZoneProvider.notifier).state =
                           climate;
                       Navigator.pop(context);

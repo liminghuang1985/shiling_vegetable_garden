@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'app.dart';
+import 'core/constants/enums.dart';
+import 'presentation/providers/providers.dart';
 import 'data/datasources/database_helper.dart';
+import 'data/datasources/settings_local_datasource.dart';
 import 'data/data_seeder.dart';
 
 void main() async {
@@ -16,9 +19,34 @@ void main() async {
     final seeder = DataSeeder(dbHelper);
     await seeder.seedIfNeeded();
 
+    // 恢复用户设置
+    final settings = SettingsLocalDatasource();
+    final savedClimate = await settings.getSelectedClimate();
+    final savedDirection = await settings.getBalconyDirection();
+
+    // 构建 Provider 覆盖
+    final climateOverride = savedClimate != null
+        ? selectedClimateZoneProvider.overrideWith(
+            (ref) => ClimateZone.fromString(savedClimate) ?? ClimateZone.warmTemperate,
+          )
+        : null;
+
+    final directionOverride = savedDirection != null
+        ? balconyDirectionProvider.overrideWith(
+            (ref) => BalconyDirection.values.firstWhere(
+              (d) => d.name == savedDirection,
+              orElse: () => BalconyDirection.south,
+            ),
+          )
+        : null;
+
     runApp(
-      const ProviderScope(
-        child: ShilingVegetableGardenApp(),
+      ProviderScope(
+        overrides: [
+          if (climateOverride != null) climateOverride,
+          if (directionOverride != null) directionOverride,
+        ],
+        child: const ShilingVegetableGardenApp(),
       ),
     );
   } catch (e, st) {

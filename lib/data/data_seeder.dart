@@ -68,19 +68,34 @@ class DataSeeder {
 
   /// 播种蔬菜数据
   Future<void> _seedVegetables() async {
-    // 从 assets 加载 JSON
-    final jsonString = await rootBundle.loadString('assets/data/vegetables.json');
-    final List<dynamic> jsonList = json.decode(jsonString);
+    try {
+      // 从 assets 加载 JSON
+      final jsonString = await rootBundle.loadString('assets/data/vegetables.json');
+      final List<dynamic> jsonList = json.decode(jsonString);
+      print('=== _seedVegetables: loaded ${jsonList.length} vegetables from JSON ===');
 
-    final db = await _dbHelper.database;
+      final db = await _dbHelper.database;
 
-    for (final item in jsonList) {
-      final vegetable = VegetableModel.fromJson(item as Map<String, dynamic>);
-      await db.insert(
-        'vegetables',
-        vegetable.toMap(),
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
+      for (final item in jsonList) {
+        try {
+          final vegetable = VegetableModel.fromJson(item as Map<String, dynamic>);
+          await db.insert(
+            'vegetables',
+            vegetable.toMap(),
+            conflictAlgorithm: ConflictAlgorithm.replace,
+          );
+          print('=== seeded: ${vegetable.name} (${vegetable.id}) ===');
+        } catch (e) {
+          print('=== FAILED to seed vegetable: $item === ERROR: $e ===');
+        }
+      }
+
+      // 验证
+      final count = (await db.query('vegetables')).length;
+      print('=== _seedVegetables: total vegetables in DB: $count ===');
+    } catch (e, st) {
+      print('=== _seedVegetables FATAL: $e ===');
+      print('=== STACK: $st ===');
     }
   }
 

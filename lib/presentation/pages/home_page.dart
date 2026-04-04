@@ -7,6 +7,8 @@ import '../providers/providers.dart';
 import '../widgets/vegetable_card.dart';
 import 'vegetable_detail_page.dart';
 import 'city_selection_page.dart';
+import 'my_garden_page.dart';
+import 'planting_calendar_page.dart';
 
 /// 首页 - 时令蔬菜推荐
 class HomePage extends ConsumerStatefulWidget {
@@ -424,6 +426,7 @@ class _HomeContent extends ConsumerWidget {
               color: AppTheme.textSecondary,
             ),
           ),
+
         ],
       ),
     );
@@ -533,9 +536,7 @@ class _MyGardenContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const Center(
-      child: Text('我的菜园页面'),
-    );
+    return const MyGardenPage();
   }
 }
 
@@ -545,9 +546,7 @@ class _CalendarContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const Center(
-      child: Text('种植日历页面'),
-    );
+    return const PlantingCalendarPage();
   }
 }
 
