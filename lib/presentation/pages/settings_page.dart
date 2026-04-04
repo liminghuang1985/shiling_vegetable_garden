@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/constants/enums.dart';
 import '../../data/data_seeder.dart';
-import '../../data/datasources/database_helper.dart';
 import '../providers/providers.dart';
 import '../../data/datasources/settings_local_datasource.dart';
 

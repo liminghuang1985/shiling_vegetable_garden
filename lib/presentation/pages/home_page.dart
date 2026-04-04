@@ -9,6 +9,7 @@ import 'vegetable_detail_page.dart';
 import 'city_selection_page.dart';
 import 'my_garden_page.dart';
 import 'planting_calendar_page.dart';
+import 'vegetable_library_page.dart';
 
 /// 首页 - 时令蔬菜推荐
 class HomePage extends ConsumerStatefulWidget {
@@ -23,8 +24,8 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   final List<Widget> _pages = const [
     _HomeContent(),
-    _MyGardenContent(),
     _CalendarContent(),
+    VegetableLibraryPage(),
     _SettingsContent(),
   ];
 
@@ -53,8 +54,8 @@ class _HomePageState extends ConsumerState<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 _buildNavItem(0, Icons.eco_outlined, Icons.eco, '首页'),
-                _buildNavItem(1, Icons.yard_outlined, Icons.yard, '我的菜园'),
-                _buildNavItem(2, Icons.calendar_month_outlined, Icons.calendar_month, '种植日历'),
+                _buildNavItem(1, Icons.calendar_month_outlined, Icons.calendar_month, '种植日历'),
+                _buildNavItem(2, Icons.eco_outlined, Icons.eco, '蔬菜库'),
                 _buildNavItem(3, Icons.settings_outlined, Icons.settings, '设置'),
               ],
             ),
