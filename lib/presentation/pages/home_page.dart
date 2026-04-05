@@ -25,10 +25,10 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   final List<Widget> _pages = const [
     _HomeContent(),
-    _CalendarContent(),
+    _MyGardenContent(),
     VegetableLibraryPage(),
     PestDiseaseListPage(),
-    _SettingsContent(),
+    _CalendarContent(),
   ];
 
   @override
@@ -56,10 +56,10 @@ class _HomePageState extends ConsumerState<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 _buildNavItem(0, Icons.eco_outlined, Icons.eco, '首页'),
-                _buildNavItem(1, Icons.calendar_month_outlined, Icons.calendar_month, '种植日历'),
+                _buildNavItem(1, Icons.yard_outlined, Icons.yard, '我的菜园'),
                 _buildNavItem(2, Icons.eco_outlined, Icons.eco, '蔬菜库'),
                 _buildNavItem(3, Icons.bug_report_outlined, Icons.bug_report, '病虫害'),
-                _buildNavItem(4, Icons.settings_outlined, Icons.settings, '设置'),
+                _buildNavItem(4, Icons.calendar_month_outlined, Icons.calendar_month, '种植日历'),
               ],
             ),
           ),
@@ -195,6 +195,31 @@ class _HomeContent extends ConsumerWidget {
                                   ),
                                 ),
                               ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 4),
+                        // 设置按钮
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const _SettingsContent(),
+                              ),
+                            );
+                          },
+                          borderRadius: BorderRadius.circular(20),
+                          child: Container(
+                            padding: const EdgeInsets.all(6),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withValues(alpha: 0.2),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: const Icon(
+                              Icons.settings,
+                              color: Colors.white,
+                              size: 18,
                             ),
                           ),
                         ),
