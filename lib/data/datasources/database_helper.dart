@@ -71,7 +71,27 @@ class DatabaseHelper {
 
   /// 升级数据库
   Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
-    // 预留：未来版本升级逻辑
+    // 迁移映射表：旧版本 -> 迁移处理器列表
+    final migrations = <int, List<Future<void> Function(Database)>>{
+      // 未来版本示例：
+      // 2: [
+      //   (db) async { await db.execute('ALTER TABLE vegetables ADD COLUMN new_col TEXT'); },
+      // ],
+      // 3: [
+      //   (db) async { await db.execute('CREATE TABLE new_table (...)'); },
+      //   (db) async { await _migrateToV3(db); },
+      // ],
+    };
+
+    for (int version = oldVersion; version < newVersion; version++) {
+      final handlers = migrations[version];
+      if (handlers != null) {
+        for (final migrate in handlers) {
+          await migrate(db);
+          print('=== DB migration v$version executed ===');
+        }
+      }
+    }
   }
 
   /// 关闭数据库

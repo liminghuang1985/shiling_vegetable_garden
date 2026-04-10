@@ -152,15 +152,25 @@ class VegetableLocalDatasource {
       limit: 1,
     );
 
-    
     if (maps.isEmpty) {
-      
       return [];
     }
 
     final vegIds = maps.first['vegetable_ids'] as String;
-    
     if (vegIds.isEmpty) return [];
     return vegIds.split(',');
+  }
+
+  /// 批量获取蔬菜（用于避免 N+1 查询）
+  Future<List<VegetableModel>> getVegetablesByIds(List<String> ids) async {
+    if (ids.isEmpty) return [];
+    final db = await _db;
+    final placeholders = List.filled(ids.length, '?').join(',');
+    final List<Map<String, dynamic>> maps = await db.query(
+      DbTables.vegetables,
+      where: 'id IN ($placeholders)',
+      whereArgs: ids,
+    );
+    return maps.map((map) => VegetableModel.fromMap(map)).toList();
   }
 }

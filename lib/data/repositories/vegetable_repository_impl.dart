@@ -54,23 +54,12 @@ class VegetableRepositoryImpl implements VegetableRepository {
 
   @override
   Future<List<Vegetable>> getRecommendedVegetables(ClimateZone climate, int month) async {
-    // 获取日历中的蔬菜ID列表
     final vegIds = await _localDatasource.getVegetableIdsForClimateAndMonth(climate, month);
-
     if (vegIds.isEmpty) {
       return [];
     }
-
-    // 获取对应的蔬菜详情
-    final List<Vegetable> vegetables = [];
-    for (final id in vegIds) {
-      final veg = await getVegetableById(id);
-      if (veg != null) {
-        vegetables.add(veg);
-      }
-    }
-
-    return vegetables;
+    final models = await _localDatasource.getVegetablesByIds(vegIds);
+    return models.map((m) => m.toEntity()).toList();
   }
 
   @override

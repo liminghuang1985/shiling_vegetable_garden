@@ -103,7 +103,7 @@ class GardenNotifier extends StateNotifier<AsyncValue<void>> {
   }
 
   /// 添加生长日志
-  Future<void> addLog({
+  Future<bool> addLog({
     required String gardenId,
     required String note,
     String? photoPath,
@@ -113,13 +113,15 @@ class GardenNotifier extends StateNotifier<AsyncValue<void>> {
       await useCase.add(gardenId: gardenId, note: note, photoPath: photoPath);
       _ref.invalidate(gardenVegetableDetailsProvider(gardenId));
       _ref.invalidate(myGardenProvider);
+      return true;
     } catch (e) {
-      // 日志添加失败不影响主流程
+      // TODO(UI层): 监听 gardenNotifierProvider 状态，失败时显示 Snackbar
+      return false;
     }
   }
 
   /// 添加提醒
-  Future<void> addReminder({
+  Future<bool> addReminder({
     required String gardenId,
     required ReminderType type,
     required DateTime time,
@@ -128,30 +130,36 @@ class GardenNotifier extends StateNotifier<AsyncValue<void>> {
       final useCase = _ref.read(manageRemindersUseCaseProvider);
       await useCase.add(gardenId: gardenId, type: type, time: time);
       _ref.invalidate(gardenVegetableDetailsProvider(gardenId));
+      return true;
     } catch (e) {
-      // 提醒添加失败不影响主流程
+      // TODO(UI层): 监听 gardenNotifierProvider 状态，失败时显示 Snackbar
+      return false;
     }
   }
 
   /// 标记提醒完成
-  Future<void> markReminderDone(String reminderId) async {
+  Future<bool> markReminderDone(String reminderId) async {
     try {
       final useCase = _ref.read(manageRemindersUseCaseProvider);
       await useCase.markDone(reminderId);
       _ref.invalidate(myGardenProvider);
+      return true;
     } catch (e) {
-      // 提醒操作失败不影响主流程
+      // TODO(UI层): 监听 gardenNotifierProvider 状态，失败时显示 Snackbar
+      return false;
     }
   }
 
   /// 删除提醒
-  Future<void> deleteReminder(String reminderId) async {
+  Future<bool> deleteReminder(String reminderId) async {
     try {
       final useCase = _ref.read(manageRemindersUseCaseProvider);
       await useCase.delete(reminderId);
       _ref.invalidate(myGardenProvider);
+      return true;
     } catch (e) {
-      // 提醒操作失败不影响主流程
+      // TODO(UI层): 监听 gardenNotifierProvider 状态，失败时显示 Snackbar
+      return false;
     }
   }
 }
