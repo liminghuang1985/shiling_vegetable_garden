@@ -152,13 +152,19 @@ class VegetableLocalDatasource {
       limit: 1,
     );
 
-    if (maps.isEmpty) {
-      return [];
+    if (maps.isNotEmpty) {
+      final vegIds = maps.first['vegetable_ids'] as String;
+      if (vegIds.isNotEmpty) return vegIds.split(',');
     }
 
-    final vegIds = maps.first['vegetable_ids'] as String;
-    if (vegIds.isEmpty) return [];
-    return vegIds.split(',');
+    // Fallback: 如果 DB 没有数据（可能是旧版本数据未迁移），使用内存中的示例数据
+    final sampleCalendar = PlantingCalendarModel.generateSampleCalendar();
+    final sampleData = sampleCalendar.data[climate];
+    if (sampleData != null && sampleData.containsKey(month)) {
+      return sampleData[month]!;
+    }
+
+    return [];
   }
 
   /// 批量获取蔬菜（用于避免 N+1 查询）

@@ -49,8 +49,10 @@ final vegetableDetailsProvider = FutureProvider.family<Vegetable?, String>((ref,
 
 /// ========== 种植日历 Provider ==========
 
-/// 种植日历
+/// 种植日历（监听气候带变化，实时刷新）
 final plantingCalendarProvider = FutureProvider<PlantingCalendar>((ref) async {
+  // 监听气候带变化，触发重新加载
+  ref.watch(selectedClimateZoneProvider);
   final useCase = ref.watch(getPlantingCalendarUseCaseProvider);
   return useCase();
 });

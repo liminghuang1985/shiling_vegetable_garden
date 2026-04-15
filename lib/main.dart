@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'app.dart';
 import 'core/constants/enums.dart';
+import 'data/models/city_model.dart';
+import 'domain/entities/city.dart';
 import 'presentation/providers/providers.dart';
 import 'data/datasources/database_helper.dart';
 import 'data/datasources/settings_local_datasource.dart';
@@ -23,6 +25,21 @@ void main() async {
     final settings = SettingsLocalDatasource();
     final savedClimate = await settings.getSelectedClimate();
     final savedDirection = await settings.getBalconyDirection();
+    final savedCityId = await settings.getSelectedCityId();
+
+    // 恢复保存的城市
+    City? savedCity;
+    if (savedCityId != null && savedCityId > 0) {
+      try {
+        final db = await dbHelper.database;
+        final maps = await db.query('cities', where: 'id = ?', whereArgs: [savedCityId], limit: 1);
+        if (maps.isNotEmpty) {
+          savedCity = CityModel.fromMap(maps.first);
+        }
+      } catch (_) {
+        // 忽略城市加载错误
+      }
+    }
 
     // 构建 Provider 覆盖
     final climateOverride = savedClimate != null
@@ -40,11 +57,17 @@ void main() async {
           )
         : null;
 
+    // 城市恢复：如果有保存的城市，用它覆盖 selectedCityProvider
+    final cityOverride = savedCity != null
+        ? selectedCityProvider.overrideWith((ref) => savedCity)
+        : null;
+
     runApp(
       ProviderScope(
         overrides: [
           if (climateOverride != null) climateOverride,
           if (directionOverride != null) directionOverride,
+          if (cityOverride != null) cityOverride,
         ],
         child: const ShilingVegetableGardenApp(),
       ),

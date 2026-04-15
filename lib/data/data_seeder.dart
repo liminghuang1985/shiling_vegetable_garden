@@ -109,9 +109,19 @@ class DataSeeder {
 
     final db = await _dbHelper.database;
 
+    // JSON 中的气候带 key 映射到 ClimateZone
+    final Map<String, ClimateZone> climateKeyMap = {
+      'cold': ClimateZone.coldTemperate,
+      'temperate': ClimateZone.temperate,
+      'warm': ClimateZone.warmTemperate,
+      'subtropical': ClimateZone.subtropical,
+      'tropical': ClimateZone.tropical,
+      'plateau': ClimateZone.plateau,
+    };
+
     // 遍历每个气候区
     for (final climateEntry in jsonMap.entries) {
-      final climate = ClimateZone.fromString(climateEntry.key);
+      final climate = climateKeyMap[climateEntry.key];
       if (climate == null) continue;
 
       final monthData = climateEntry.value as Map<String, dynamic>;

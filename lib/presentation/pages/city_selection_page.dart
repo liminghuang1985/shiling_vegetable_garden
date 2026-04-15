@@ -323,6 +323,7 @@ class _CitySelectionPageState extends ConsumerState<CitySelectionPage> {
             await settings.saveSelectedClimate(city.climate.name);
 
             ref.read(selectedClimateZoneProvider.notifier).state = city.climate;
+            ref.read(selectedCityProvider.notifier).state = city;
             ref.invalidate(currentRecommendedVegetablesProvider);
             if (!context.mounted) return;
             Navigator.pop(context);

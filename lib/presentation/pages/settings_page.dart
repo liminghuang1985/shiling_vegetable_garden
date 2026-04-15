@@ -4,6 +4,7 @@ import '../../core/constants/enums.dart';
 import '../../data/data_seeder.dart';
 import '../providers/providers.dart';
 import '../../data/datasources/settings_local_datasource.dart';
+import 'city_selection_page.dart';
 
 /// 设置页
 class SettingsPage extends ConsumerStatefulWidget {
@@ -42,6 +43,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     final selectedClimate = ref.watch(selectedClimateZoneProvider);
+    final selectedCity = ref.watch(selectedCityProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -50,16 +52,19 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
       body: ListView(
         children: [
 
-          // 气候带设置
+          // 城市/气候带设置
           ListTile(
             leading: const CircleAvatar(
               backgroundColor: Colors.green,
-              child: Icon(Icons.public, color: Colors.white),
+              child: Icon(Icons.location_city, color: Colors.white),
             ),
-            title: const Text('气候带'),
-            subtitle: Text(selectedClimate.label),
+            title: const Text('城市'),
+            subtitle: Text(selectedCity?.name ?? selectedClimate.label),
             trailing: const Icon(Icons.chevron_right),
-            onTap: () => _showClimateZonePicker(context, ref),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const CitySelectionPage()),
+            ),
           ),
 
           const Divider(),

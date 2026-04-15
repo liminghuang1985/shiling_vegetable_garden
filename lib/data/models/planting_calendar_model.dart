@@ -114,85 +114,92 @@ class PlantingCalendarModel extends PlantingCalendar {
 
   static Map<int, List<String>> _generateColdTemperateCalendar() {
     return {
-      3: ['菠菜', '小白菜'],
-      4: ['番茄', '黄瓜', '辣椒', '茄子', '菜豆'],
-      5: ['番茄', '黄瓜', '辣椒', '茄子', '菜豆', '南瓜'],
-      6: ['黄瓜', '茄子', '菜豆', '南瓜', '豇豆'],
-      7: ['萝卜', '白菜'],
-      8: ['萝卜', '白菜'],
-      9: ['菠菜', '香菜'],
+      3: ['xbc', 'sc', 'bc', 'hlb'],
+      4: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'bc', 'hlb', 'bhc'],
+      5: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'sc', 'bc', 'hlb', 'bhc', 'xc'],
+      6: ['hg', 'qz', 'sjc', 'ng', 'dg', 'hlb', 'bhc', 'xc', 'lsc', 'md'],
+      7: ['fq', 'hg', 'lj', 'sjc', 'ng', 'dg', 'lsc', 'md', 'bhc'],
+      8: ['sjc', 'ng', 'lsc', 'md', 'bhc'],
+      9: ['xbc', 'sc', 'bc', 'hlb', 'bhc'],
+      10: ['xbc', 'sc', 'bc', 'hlb'],
     };
   }
 
   static Map<int, List<String>> _generateTemperateCalendar() {
     return {
-      3: ['菠菜', '韭菜', '小白菜'],
-      4: ['番茄', '黄瓜', '辣椒', '茄子', '菜豆', '南瓜'],
-      5: ['番茄', '黄瓜', '辣椒', '茄子', '菜豆', '南瓜', '冬瓜'],
-      6: ['黄瓜', '茄子', '菜豆', '豇豆', '丝瓜'],
-      7: ['萝卜', '白菜', '芥菜'],
-      8: ['萝卜', '白菜', '芥菜', '香菜'],
-      9: ['菠菜', '香菜', '蒜苗'],
+      3: ['xbc', 'sc', 'bc', 'hlb', 'ws'],
+      4: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'bc', 'hlb', 'ws', 'bhc', 'xc'],
+      5: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'sc', 'bc', 'hlb', 'ws', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'xlh'],
+      6: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'lsc', 'md', 'bhc', 'xc', 'kxc', 'xlh', 'hyc'],
+      7: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'lsc', 'md', 'bhc', 'xc', 'kxc', 'hyc'],
+      8: ['sjc', 'ng', 'lsc', 'md', 'bhc', 'xc', 'kxc', 'hyc'],
+      9: ['xbc', 'sc', 'bc', 'hlb', 'ws', 'bhc', 'xc', 'kxc'],
+      10: ['xbc', 'sc', 'bc', 'hlb', 'ws'],
+      11: ['sc', 'bc', 'hlb'],
     };
   }
 
   static Map<int, List<String>> _generateWarmTemperateCalendar() {
     return {
-      2: ['菠菜', '蒜苗'],
-      3: ['菠菜', '韭菜', '小白菜', '菜苔'],
-      4: ['番茄', '黄瓜', '辣椒', '茄子', '菜豆', '南瓜', '苦瓜'],
-      5: ['番茄', '黄瓜', '辣椒', '茄子', '菜豆', '南瓜', '苦瓜', '丝瓜'],
-      6: ['黄瓜', '茄子', '菜豆', '豇豆', '丝瓜', '空心菜'],
-      7: ['萝卜', '白菜', '芥菜', '空心菜'],
-      8: ['萝卜', '白菜', '芥菜', '香菜', '菠菜'],
-      9: ['菠菜', '香菜', '蒜苗', '莴笋'],
-      10: ['菠菜', '蒜苗'],
+      1: ['xbc', 'sc', 'bc', 'hlb', 'ws'],
+      2: ['xbc', 'sc', 'bc', 'hlb', 'ws'],
+      3: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'bc', 'hlb', 'ws', 'bhc', 'xc', 'lsc'],
+      4: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'bc', 'hlb', 'ws', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'xlh', 'ymc', 'npc', 'szc', 'zmc'],
+      5: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'tg', 'sc', 'bc', 'hlb', 'ws', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'xlh', 'hyc', 'ymc', 'npc', 'szc', 'zmc', 'am', 'hsy'],
+      6: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'tg', 'lsc', 'md', 'bhc', 'xc', 'kxc', 'hyc', 'ymc', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl'],
+      7: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'tg', 'lsc', 'md', 'bhc', 'xc', 'kxc', 'hyc', 'ymc', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl'],
+      8: ['sjc', 'ng', 'tg', 'lsc', 'md', 'bhc', 'xc', 'kxc', 'hyc', 'ymc', 'npc', 'szc', 'zmc', 'am'],
+      9: ['xbc', 'sc', 'bc', 'hlb', 'ws', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'npc', 'szc', 'zmc', 'ct', 'wdj'],
+      10: ['xbc', 'sc', 'bc', 'hlb', 'ws', 'bhc', 'xc', 'npc', 'szc', 'zmc', 'ct', 'wdj'],
+      11: ['xbc', 'sc', 'bc', 'hlb', 'ws', 'ct', 'wdj'],
+      12: ['xbc', 'sc', 'bc', 'hlb'],
     };
   }
 
   static Map<int, List<String>> _generateSubtropicalCalendar() {
     return {
-      1: ['菠菜', '蒜苗', '萝卜'],
-      2: ['菠菜', '蒜苗', '萝卜', '菜苔'],
-      3: ['番茄', '黄瓜', '辣椒', '茄子', '菜豆', '南瓜'],
-      4: ['番茄', '黄瓜', '辣椒', '茄子', '菜豆', '南瓜', '苦瓜', '丝瓜'],
-      5: ['番茄', '黄瓜', '辣椒', '茄子', '菜豆', '苦瓜', '丝瓜', '空心菜'],
-      6: ['黄瓜', '茄子', '菜豆', '豇豆', '丝瓜', '空心菜', '木耳菜'],
-      7: ['萝卜', '白菜', '芥菜', '空心菜', '木耳菜'],
-      8: ['萝卜', '白菜', '芥菜', '香菜', '菠菜'],
-      9: ['菠菜', '香菜', '蒜苗', '莴笋', '菜苔'],
-      10: ['菠菜', '蒜苗', '萝卜', '菜苔'],
-      11: ['菠菜', '蒜苗', '萝卜'],
-      12: ['菠菜', '蒜苗'],
+      1: ['xbc', 'sc', 'bc', 'hlb', 'ws', 'ct', 'wdj'],
+      2: ['xbc', 'sc', 'bc', 'hlb', 'ws', 'ct', 'wdj'],
+      3: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'bc', 'hlb', 'ws', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'xlh', 'ct', 'wdj', 'npc', 'szc'],
+      4: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'bc', 'hlb', 'ws', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'xlh', 'hyc', 'fsg', 'ct', 'wdj', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl', 'zbthk', 'tsq'],
+      5: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'tg', 'sc', 'bc', 'hlb', 'ws', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'xlh', 'hyc', 'fsg', 'ct', 'wdj', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl', 'zbthk', 'tsq', 'mec'],
+      6: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'tg', 'lsc', 'md', 'bhc', 'xc', 'kxc', 'hyc', 'fsg', 'ct', 'wdj', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl', 'zbthk', 'tsq', 'mec', 'll'],
+      7: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'tg', 'lsc', 'md', 'bhc', 'xc', 'kxc', 'hyc', 'fsg', 'ct', 'wdj', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl', 'mec', 'll'],
+      8: ['sjc', 'ng', 'tg', 'lsc', 'md', 'bhc', 'xc', 'kxc', 'hyc', 'fsg', 'ct', 'wdj', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl', 'mec', 'll', 'zs'],
+      9: ['xbc', 'sc', 'bc', 'hlb', 'ws', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'npc', 'szc', 'zmc', 'ct', 'wdj', 'am', 'hsy', 'zs'],
+      10: ['xbc', 'sc', 'bc', 'hlb', 'ws', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'npc', 'szc', 'zmc', 'ct', 'wdj', 'zs'],
+      11: ['xbc', 'sc', 'bc', 'hlb', 'ws', 'ct', 'wdj', 'zs'],
+      12: ['xbc', 'sc', 'bc', 'hlb', 'ws', 'ct', 'wdj'],
     };
   }
 
   static Map<int, List<String>> _generateTropicalCalendar() {
     return {
-      1: ['空心菜', '木耳菜', '苋菜'],
-      2: ['空心菜', '木耳菜', '苋菜', '番茄'],
-      3: ['番茄', '黄瓜', '辣椒', '茄子', '菜豆', '南瓜', '苦瓜'],
-      4: ['番茄', '黄瓜', '辣椒', '茄子', '菜豆', '南瓜', '苦瓜', '丝瓜', '空心菜'],
-      5: ['黄瓜', '茄子', '菜豆', '豇豆', '丝瓜', '空心菜', '木耳菜', '苋菜'],
-      6: ['空心菜', '木耳菜', '苋菜', '豇豆'],
-      7: ['空心菜', '木耳菜', '苋菜', '萝卜'],
-      8: ['空心菜', '木耳菜', '苋菜', '萝卜', '白菜'],
-      9: ['空心菜', '木耳菜', '苋菜', '萝卜', '白菜', '菠菜'],
-      10: ['空心菜', '木耳菜', '苋菜', '菠菜', '蒜苗'],
-      11: ['空心菜', '木耳菜', '菠菜', '蒜苗'],
-      12: ['空心菜', '木耳菜', '苋菜'],
+      1: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'tg', 'sc', 'bc', 'hlb', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'fsg', 'ct', 'wdj', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl', 'zbthk', 'tsq', 'mec', 'll', 'zs'],
+      2: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'tg', 'sc', 'bc', 'hlb', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'fsg', 'ct', 'wdj', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl', 'zbthk', 'tsq', 'mec', 'll', 'zs'],
+      3: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'tg', 'sc', 'bc', 'hlb', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'xlh', 'hyc', 'fsg', 'ct', 'wdj', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl', 'zbthk', 'tsq', 'mec', 'll', 'zs'],
+      4: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'tg', 'sc', 'bc', 'hlb', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'xlh', 'hyc', 'fsg', 'ct', 'wdj', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl', 'zbthk', 'tsq', 'mec', 'll', 'zs'],
+      5: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'tg', 'sc', 'bc', 'hlb', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'xlh', 'hyc', 'fsg', 'ct', 'wdj', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl', 'zbthk', 'tsq', 'mec', 'll', 'zs'],
+      6: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'tg', 'sc', 'bc', 'hlb', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'xlh', 'hyc', 'fsg', 'ct', 'wdj', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl', 'zbthk', 'tsq', 'mec', 'll', 'zs'],
+      7: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'tg', 'sc', 'bc', 'hlb', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'xlh', 'hyc', 'fsg', 'ct', 'wdj', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl', 'zbthk', 'tsq', 'mec', 'll', 'zs'],
+      8: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'tg', 'sc', 'bc', 'hlb', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'xlh', 'hyc', 'fsg', 'ct', 'wdj', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl', 'zbthk', 'tsq', 'mec', 'll', 'zs'],
+      9: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'tg', 'sc', 'bc', 'hlb', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'xlh', 'hyc', 'fsg', 'ct', 'wdj', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl', 'zbthk', 'tsq', 'mec', 'll', 'zs'],
+      10: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'tg', 'sc', 'bc', 'hlb', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'xlh', 'hyc', 'fsg', 'ct', 'wdj', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl', 'zbthk', 'tsq', 'mec', 'll', 'zs'],
+      11: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'tg', 'sc', 'bc', 'hlb', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'fsg', 'ct', 'wdj', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl', 'zbthk', 'tsq', 'mec', 'll', 'zs'],
+      12: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'tg', 'sc', 'bc', 'hlb', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'fsg', 'ct', 'wdj', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl', 'zbthk', 'tsq', 'mec', 'll', 'zs'],
     };
   }
 
   static Map<int, List<String>> _generatePlateauCalendar() {
     return {
-      3: ['菠菜', '小白菜'],
-      4: ['番茄', '黄瓜', '辣椒', '茄子', '菜豆'],
-      5: ['番茄', '黄瓜', '辣椒', '茄子', '菜豆', '南瓜'],
-      6: ['黄瓜', '茄子', '菜豆', '南瓜', '豇豆'],
-      7: ['萝卜', '白菜'],
-      8: ['萝卜', '白菜', '香菜'],
-      9: ['菠菜', '香菜'],
+      3: ['xbc', 'sc', 'bc', 'hlb', 'ws', 'ct', 'wdj'],
+      4: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'bc', 'hlb', 'ws', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'ct', 'wdj', 'npc', 'szc'],
+      5: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'sc', 'bc', 'hlb', 'ws', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'xlh', 'ct', 'wdj', 'npc', 'szc', 'zmc', 'am', 'hsy'],
+      6: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'dg', 'lsc', 'md', 'bhc', 'xc', 'kxc', 'xlh', 'hyc', 'ct', 'wdj', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl', 'zbthk', 'tsq', 'mec'],
+      7: ['fq', 'hg', 'lj', 'qz', 'sjc', 'ng', 'lsc', 'md', 'bhc', 'xc', 'kxc', 'hyc', 'ct', 'wdj', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl', 'mec'],
+      8: ['sjc', 'ng', 'lsc', 'md', 'bhc', 'xc', 'kxc', 'hyc', 'ct', 'wdj', 'npc', 'szc', 'zmc', 'am', 'hsy', 'cxl', 'mec'],
+      9: ['xbc', 'sc', 'bc', 'hlb', 'ws', 'bhc', 'xc', 'lsc', 'md', 'kxc', 'ct', 'wdj', 'npc', 'szc', 'zmc'],
+      10: ['xbc', 'sc', 'bc', 'hlb', 'ws', 'ct', 'wdj', 'npc', 'szc'],
     };
   }
 }
