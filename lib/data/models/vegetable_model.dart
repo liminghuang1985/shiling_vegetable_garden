@@ -163,27 +163,62 @@ class VegetableModel extends Vegetable {
     required super.suitableClimates,
   });
 
-  /// 从 JSON 解析
+  /// 从 JSON 解析（兼容复杂对象结构和简化字符串结构）
   factory VegetableModel.fromJson(Map<String, dynamic> json) {
     return VegetableModel(
       id: json['id'] as String,
       name: json['name'] as String,
       alias: json['alias'] as String?,
-      category: VegetableCategory.fromString(json['category'] as String) ?? VegetableCategory.leafy,
-      sunlight: SunlightNeed.fromString(json['sunlight'] as String) ?? SunlightNeed.fullSun,
+      category: VegetableCategory.fromString(json['category'] as String? ?? '') ?? VegetableCategory.leafy,
+      sunlight: SunlightNeed.fromString(json['sunlight'] as String? ?? '') ?? SunlightNeed.fullSun,
       minTemp: (json['minTemp'] as num?)?.toDouble() ?? 10.0,
       maxTemp: (json['maxTemp'] as num?)?.toDouble() ?? 35.0,
-      soil: SoilRequirementModel.fromJson(json['soil'] as Map<String, dynamic>? ?? {}),
-      fertilizer: FertilizerModel.fromJson(json['fertilizer'] as Map<String, dynamic>? ?? {}),
-      planting: PlantingInfoModel.fromJson(json['planting'] as Map<String, dynamic>? ?? {}),
-      nutrients: (json['nutrients'] as List<dynamic>?)?.cast<String>() ?? [],
-      cautions: (json['cautions'] as List<dynamic>?)?.cast<String>() ?? [],
-      suitableClimates: (json['suitableClimates'] as List<dynamic>?)
-              ?.map((e) => ClimateZone.fromString(e as String))
-              .whereType<ClimateZone>()
-              .toList() ??
-          [],
+      soil: _parseSoil(json['soil']),
+      fertilizer: _parseFertilizer(json['fertilizer']),
+      planting: _parsePlanting(json['planting']),
+      nutrients: _parseJsonStringList(json['nutrients']),
+      cautions: _parseJsonStringList(json['cautions']),
+      suitableClimates: _parseJsonClimateZoneList(json['suitableClimates']),
     );
+  }
+
+  static SoilRequirementModel _parseSoil(dynamic value) {
+    if (value is Map<String, dynamic>) return SoilRequirementModel.fromJson(value);
+    return const SoilRequirementModel(type: '通用', phMin: 6.0, phMax: 7.5, drainage: '良好');
+  }
+
+  static FertilizerModel _parseFertilizer(dynamic value) {
+    if (value is Map<String, dynamic>) return FertilizerModel.fromJson(value);
+    if (value is String) return FertilizerModel(base: value, top: '');
+    return const FertilizerModel(base: '有机肥', top: '复合肥');
+  }
+
+  static PlantingInfoModel _parsePlanting(dynamic value) {
+    if (value is Map<String, dynamic>) return PlantingInfoModel.fromJson(value);
+    if (value is String) return const PlantingInfoModel(depthCm: 2, spacingCm: 30, rowSpacingCm: 40, germinationDays: 7, maturityDays: 60);
+    return const PlantingInfoModel(depthCm: 2, spacingCm: 30, rowSpacingCm: 40, germinationDays: 7, maturityDays: 60);
+  }
+
+  static List<String> _parseJsonStringList(dynamic value) {
+    if (value == null) return [];
+    if (value is List) return value.cast<String>();
+    if (value is String) {
+      if (value.isEmpty) return [];
+      return value.split('/').map((e) => e.trim()).toList();
+    }
+    return [];
+  }
+
+  static List<ClimateZone> _parseJsonClimateZoneList(dynamic value) {
+    if (value == null) return [];
+    if (value is List) {
+      return value.map((e) => ClimateZone.fromString(e.toString())).whereType<ClimateZone>().toList();
+    }
+    if (value is String) {
+      if (value.isEmpty) return [];
+      return value.split(',').map((e) => ClimateZone.fromString(e.trim())).whereType<ClimateZone>().toList();
+    }
+    return [];
   }
 
   /// 从数据库 Map 解析
