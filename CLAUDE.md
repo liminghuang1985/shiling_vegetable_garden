@@ -17,7 +17,7 @@
 | 本地存储 | sqflite + shared_preferences | 5 端唯一可用方案. 桌面端用 `sqflite_common_ffi` |
 | 架构 | Clean Architecture | `domain` / `data` / `presentation` 三层 |
 | JSON | 手写 `fromJson` (迁移中) | pubspec 已装 `json_serializable` 但**未启用**, 逐步替换中 |
-| 通知 | flutter_local_notifications (未启用) | pubspec 引了但实际没集成, 别删 |
+| 通知 | ❌ 已删 | v2 不集成, v3 视情况装回 (`flutter_local_notifications` / `timezone`, commit `962a867` 移除) |
 
 ## 目录结构
 
@@ -87,7 +87,7 @@ dart run build_runner build --delete-conflicting-outputs
 | 表 / 实体 | 关键字段 | 数据源 |
 |---|---|---|
 | `vegetables` | id / name / alias / category / sunlight / minTemp / maxTemp / soil / fertilizer / planting / nutrients / cautions / suitableClimates | `assets/data/vegetables.json` (60 种) |
-| `cities` | name / province / climate_zone | **硬编码在 `lib/core/constants/app_constants.dart:16-442` (333 个城市)** — T5 计划挪到 `assets/data/cities.json` |
+| `cities` | name / province / climate_zone | **硬编码在 `lib/core/constants/app_constants.dart:16-442` (364 个城市)** — T5 已 dump 到 `assets/data/cities.json`, 后续待切 |
 | `planting_calendar` | climate_zone / month / vegetable_ids | `assets/data/planting_calendar.json` |
 | `my_garden` | id / vegetable_id / vegetable_name / sow_date / sunlight / status / created_at / updated_at | 用户运行时写入 |
 | `garden_logs` | id / garden_id (FK) / date / note / photo_path | 用户运行时写入 |
@@ -101,15 +101,13 @@ dart run build_runner build --delete-conflicting-outputs
 
 | 端 | SQLite | Notification | 备注 |
 |---|---|---|---|
-| Android | sqflite ✅ | flutter_local_notifications ✅ | 主目标 |
-| iOS | sqflite ✅ | flutter_local_notifications ✅ | 需配 Info.plist 权限 |
+| Android | sqflite ✅ | ❌ 未集成 | 主目标 |
+| iOS | sqflite ✅ | ❌ 未集成 | 需配 Info.plist 权限 |
 | Web | **sqflite_common_ffi_web** ⚠️ | ❌ | IndexedDB 存储, 兼容性最差 |
 | macOS | sqflite_common_ffi ✅ | ❌ | 启动时 `sqfliteFfiInit()` |
 | Windows | sqflite_common_ffi ✅ | ❌ | 同 macOS |
 
-`database_helper.dart:24-27` 自动检测桌面端切换 FFI. Web 端需额外配 `sqflite_common_ffi_web` (pubspec 已引).
-
-**⚠️ 提醒功能目前只在 mobile 端能跑, 桌面/web 端调 `flutter_local_notifications` 会抛 PlatformException. UI 已做兜底, 别把提醒逻辑写死在 mobile-only 分支.**
+**⚠️ 通知功能目前 v2 不集成.**`flutter_local_notifications` / `timezone` 已于 commit `962a867` 从 pubspec 移除, v2 老用户无影响. v3 视情况装回.
 
 ## 已知架构问题 / TODO
 
@@ -122,7 +120,7 @@ dart run build_runner build --delete-conflicting-outputs
    - **T2 已修**: 改走 repository
 2. **N+1 查询** — `lib/data/datasources/garden_local_datasource.dart:18-75` 3 个方法对每条记录额外查 2 次 DB.
 3. **手写 JSON 序列化** — `pubspec.yaml` 引了 `json_serializable` 但 0 个 `.g.dart` 文件生成. 75 处 `fromJson/toJson` 全部手写.
-4. **333 城市硬编码** — `lib/core/constants/app_constants.dart:16-442` 占 442 行 / 30KB. T5 计划挪到 `assets/data/cities.json`.
+4. **364 城市硬编码** — `lib/core/constants/app_constants.dart:16-442` 占 442 行 / 30KB. T5 已 dump 到 `assets/data/cities.json`, 后续待切.
 
 ### 🟡 中等
 5. **数据库迁移脚手架空架子** — `database_helper.dart:75-95` 的 `migrations` map 是空注释. **下次升 schema 必填, 否则老用户启动崩溃**.
@@ -133,7 +131,7 @@ dart run build_runner build --delete-conflicting-outputs
 8. `print()` / `debugPrint()` 散落 (data_seeder 4 处 + database_helper 1 处 + main.dart 2 处) — 已用 `core/utils/logger.dart` 替换.
 9. 13 个页面平铺在 `presentation/pages/`, 大文件 962 行 (`vegetable_detail_page.dart`).
 10. 5 个 model 都有 `fromEntity/toEntity`, boilerplate 重复.
-11. pubspec 引了 `flutter_local_notifications` / `timezone` 但实际**没用**, 删掉可省 2-3MB.
+11. ~~pubspec 引了 `flutter_local_notifications` / `timezone` 但实际**没用**, 删掉可省 2-3MB~~ — **已删 (commit `962a867`)**
 
 ## PR 提交规范
 
@@ -159,7 +157,7 @@ docs: 补CLAUDE.md项目AI上下文
 ```
 lib/main.dart                                    # 入口 + DataSeeder.seedIfNeeded()
 lib/app.dart                                     # MaterialApp 配置
-lib/core/constants/app_constants.dart            # 333 城市硬编码
+lib/core/constants/app_constants.dart            # 364 城市硬编码 (T5 已 dump 到 cities.json)
 lib/core/constants/db_constants.dart             # DbNames / DbTables / DbSql
 lib/core/constants/enums.dart                    # ClimateZone / VegetableCategory / GardenStatus / BalconyDirection
 lib/core/utils/logger.dart                       # 统一日志 (logger.i / logger.w / logger.e)
@@ -197,7 +195,7 @@ lib/presentation/pages/                          # 13 个页面
 
 1. **别用 `print` / `debugPrint`** — 用 `core/utils/logger.dart` 里的 `AppLogger`. `print` 在 release 包也会打.
 2. **别在 widget 直接 `new Datasource()`** — 用 `ref.read(*LocalDatasourceProvider)` (data 层内部) 或 `ref.watch(*RepositoryProvider)` (presentation 层).
-3. **别改 `app_constants.dart` 城市数组** — 442 行硬编码, 改完要重 build APK. T5 重构后再改.
+3. **别改 `app_constants.dart` 城市数组** — 442 行硬编码 (364 个城市), 改完要重 build APK. 待切到 `assets/data/cities.json` 后再改.
 4. **别在 page 直接 import `data/models/`** — 应该只看到 `domain/entities/`. 反向依赖会被 CI / 后续重构发现.
 5. **schema 变更后必须填 migrations** — 别只改 `_onCreate`. 老用户从旧版本升级会启动崩溃.
 6. **异步数据库操作的 await** — `ref.watch(...).getXxx()` 拿到的是 `Future`, 用 `AsyncValue.when()` / `FutureBuilder` 处理, 别忘了 loading / error 状态.
