@@ -74,28 +74,78 @@ class DatabaseHelper {
   /// T7: 填实迁移脚手架. 任何 schema 变更必须在此处加迁移逻辑.
   /// 当前 DbNames.version=1, 无迁移历史.
   /// 升级示例: 升 v2 时, 加 `2: [(db) async { await db.execute('ALTER TABLE ...'); }]`
+  ///
+  /// ⚠️ 老用户升级路径: openDatabase 检测到 version 变化 → 调 _onUpgrade
+  /// 如果这个 map 漏了对应版本, 用户启动崩溃. 永远不要跳过这一步.
   Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
-    // 迁移映射表: 旧版本 -> 迁移处理器列表
-    // ⚠️ 升级 schema 必填, 否则老用户从旧版本升级会启动崩溃
-    final migrations = <int, List<Future<void> Function(Database)>>{
-      // ===== 模板: 升 v2 时填这里 =====
-      // 2: [
-      //   (db) async {
-      //     await db.execute('ALTER TABLE vegetables ADD COLUMN new_field TEXT');
-      //   },
-      // ],
-      // ===== 模板结束 =====
-    };
+    await _applyMigrations(db, oldVersion, newVersion, _migrationHandlers);
+  }
+
+  /// 迁移处理函数集合 (oldVersion → handlers)
+  /// 例: 升 v2 加 column, 升 v3 加表, 等等.
+  /// 列出此字段的 key 必须连续 (2,3,4,... 不能跳).
+  static final Map<int, List<Future<void> Function(Database)>> _migrationHandlers = {
+    // ===== 模板: 升 v2 时填这里 =====
+    // 2: [
+    //   (db) async {
+    //     await db.execute('ALTER TABLE vegetables ADD COLUMN new_field TEXT');
+    //   },
+    // ],
+    // ===== 模板结束 =====
+  };
+
+  /// 抽取出来的纯函数, 方便单元测试直接喂 _migrationHandlers 进来验证
+  /// 不会因为没新版本而误判 (旧版 → 同版本 no-op).
+  /// (不用 @visibleForTesting 因为 meta 包没直接依赖, ignore 也不优雅.)
+  static Future<void> applyMigrationsForTest(
+    Database db,
+    int oldVersion,
+    int newVersion, {
+    Map<int, List<Future<void> Function(Database)>>? handlers,
+  }) =>
+      _applyMigrations(
+        db,
+        oldVersion,
+        newVersion,
+        handlers ?? _migrationHandlers,
+      );
+
+  static Future<void> _applyMigrations(
+    Database db,
+    int oldVersion,
+    int newVersion,
+    Map<int, List<Future<void> Function(Database)>> handlers,
+  ) async {
+    if (newVersion < oldVersion) {
+      throw ArgumentError(
+        'newVersion ($newVersion) must be >= oldVersion ($oldVersion). '
+        '不允许降级 schema.',
+      );
+    }
+    if (newVersion == oldVersion) {
+      // 同版本 no-op. 新装用户走 _onCreate, 不走这里.
+      return;
+    }
+
+    // 检测连续性: 不能有空洞 (漏一个版本会让中间用户崩溃)
+    for (int v = oldVersion; v < newVersion; v++) {
+      if (!handlers.containsKey(v)) {
+        AppLogger.w(
+          'No migration handler for v$v → v${v + 1}. '
+          '老用户从 v$v 升上来会崩溃!',
+        );
+        // ⚠️ 选择 1: 抛错让启动失败 (开发期可见)
+        // ⚠️ 选择 2: 不抛, 让 onUpgrade 至少成功 (生产环境保守)
+        // 当前选 2 (保守), 但日志留痕方便诊断. 想严格请改 throw.
+      }
+    }
 
     for (int version = oldVersion; version < newVersion; version++) {
-      final handlers = migrations[version];
-      if (handlers != null) {
-        for (final migrate in handlers) {
-          await migrate(db);
-          AppLogger.i('DB migration v$version executed');
-        }
-      } else if (version > oldVersion) {
-        AppLogger.w('No migration handler for v$version → v${version + 1}. 老用户可能崩溃!');
+      final versionHandlers = handlers[version];
+      if (versionHandlers == null) continue;
+      for (final migrate in versionHandlers) {
+        await migrate(db);
+        AppLogger.i('DB migration v$version executed');
       }
     }
   }
