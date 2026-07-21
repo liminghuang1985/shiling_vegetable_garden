@@ -1,7 +1,11 @@
 import '../../domain/entities/garden_vegetable.dart';
 import '../../core/constants/enums.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'garden_model.g.dart';
 
 /// 生长日志数据模型
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: false)
 class GardenLogModel extends GardenLog {
   const GardenLogModel({
     super.id,
@@ -11,15 +15,8 @@ class GardenLogModel extends GardenLog {
     super.photoPath,
   });
 
-  factory GardenLogModel.fromJson(Map<String, dynamic> json) {
-    return GardenLogModel(
-      id: json['id'] as int?,
-      gardenId: json['garden_id'] as String,
-      date: DateTime.parse(json['date'] as String),
-      note: json['note'] as String,
-      photoPath: json['photo_path'] as String?,
-    );
-  }
+  factory GardenLogModel.fromJson(Map<String, dynamic> json) =>
+      _$GardenLogModelFromJson(json);
 
   factory GardenLogModel.fromMap(Map<String, dynamic> map) {
     return GardenLogModel(
@@ -31,21 +28,15 @@ class GardenLogModel extends GardenLog {
     );
   }
 
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'garden_id': gardenId,
-        'date': date.toIso8601String(),
-        'note': note,
-        'photo_path': photoPath,
-      };
+  Map<String, dynamic> toJson() => _$GardenLogModelToJson(this);
 
   Map<String, dynamic> toMap() => {
-        if (id != null) 'id': id,
-        'garden_id': gardenId,
-        'date': date.toIso8601String(),
-        'note': note,
-        'photo_path': photoPath,
-      };
+    if (id != null) 'id': id,
+    'garden_id': gardenId,
+    'date': date.toIso8601String(),
+    'note': note,
+    'photo_path': photoPath,
+  };
 
   factory GardenLogModel.fromEntity(GardenLog log) {
     return GardenLogModel(
@@ -69,6 +60,7 @@ class GardenLogModel extends GardenLog {
 }
 
 /// 提醒数据模型
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: false)
 class ReminderModel extends Reminder {
   const ReminderModel({
     required super.id,
@@ -79,21 +71,12 @@ class ReminderModel extends Reminder {
     super.createdAt,
   });
 
-  factory ReminderModel.fromJson(Map<String, dynamic> json) {
-    return ReminderModel(
-      id: json['id'] as String,
-      gardenId: json['garden_id'] as String,
-      type: ReminderType.values.firstWhere(
-        (e) => e.name == json['type'],
-        orElse: () => ReminderType.water,
-      ),
-      time: DateTime.parse(json['time'] as String),
-      isDone: json['is_done'] as bool? ?? false,
-      createdAt: json['created_at'] != null
-          ? DateTime.parse(json['created_at'] as String)
-          : null,
-    );
-  }
+  factory ReminderModel.fromJson(Map<String, dynamic> json) =>
+      _$ReminderModelFromJson(json);
+
+  @JsonKey(unknownEnumValue: ReminderType.water)
+  @override
+  ReminderType get type => super.type;
 
   factory ReminderModel.fromMap(Map<String, dynamic> map) {
     return ReminderModel(
@@ -111,23 +94,16 @@ class ReminderModel extends Reminder {
     );
   }
 
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'garden_id': gardenId,
-        'type': type.name,
-        'time': time.toIso8601String(),
-        'is_done': isDone,
-        'created_at': createdAt?.toIso8601String(),
-      };
+  Map<String, dynamic> toJson() => _$ReminderModelToJson(this);
 
   Map<String, dynamic> toMap() => {
-        'id': id,
-        'garden_id': gardenId,
-        'type': type.name,
-        'time': time.toIso8601String(),
-        'is_done': isDone ? 1 : 0,
-        'created_at': (createdAt ?? DateTime.now()).toIso8601String(),
-      };
+    'id': id,
+    'garden_id': gardenId,
+    'type': type.name,
+    'time': time.toIso8601String(),
+    'is_done': isDone ? 1 : 0,
+    'created_at': (createdAt ?? DateTime.now()).toIso8601String(),
+  };
 
   factory ReminderModel.fromEntity(Reminder reminder) {
     return ReminderModel(
@@ -153,6 +129,7 @@ class ReminderModel extends Reminder {
 }
 
 /// 用户菜园蔬菜数据模型
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: false)
 class GardenVegetableModel extends GardenVegetable {
   const GardenVegetableModel({
     required super.id,
@@ -167,34 +144,24 @@ class GardenVegetableModel extends GardenVegetable {
     super.reminders = const [],
   });
 
-  factory GardenVegetableModel.fromJson(Map<String, dynamic> json) {
-    return GardenVegetableModel(
-      id: json['id'] as String,
-      vegetableId: json['vegetable_id'] as String,
-      vegetableName: json['vegetable_name'] as String,
-      sowDate: DateTime.parse(json['sow_date'] as String),
-      sunlight: json['sunlight'] != null
-          ? BalconyDirection.values.firstWhere(
-              (e) => e.name == json['sunlight'],
-              orElse: () => BalconyDirection.none,
-            )
-          : null,
-      status: GardenStatus.values.firstWhere(
-        (e) => e.name == json['status'],
-        orElse: () => GardenStatus.growing,
-      ),
-      createdAt: DateTime.parse(json['created_at'] as String),
-      updatedAt: DateTime.parse(json['updated_at'] as String),
-      logs: (json['logs'] as List<dynamic>?)
-              ?.map((e) => GardenLogModel.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-      reminders: (json['reminders'] as List<dynamic>?)
-              ?.map((e) => ReminderModel.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-    );
-  }
+  factory GardenVegetableModel.fromJson(Map<String, dynamic> json) =>
+      _$GardenVegetableModelFromJson(json);
+
+  @JsonKey(unknownEnumValue: BalconyDirection.none)
+  @override
+  BalconyDirection? get sunlight => super.sunlight;
+
+  @JsonKey(unknownEnumValue: GardenStatus.growing)
+  @override
+  GardenStatus get status => super.status;
+
+  @JsonKey(fromJson: _logsFromJson, toJson: _logsToJson)
+  @override
+  List<GardenLog> get logs => super.logs;
+
+  @JsonKey(fromJson: _remindersFromJson, toJson: _remindersToJson)
+  @override
+  List<Reminder> get reminders => super.reminders;
 
   factory GardenVegetableModel.fromMap(Map<String, dynamic> map) {
     return GardenVegetableModel(
@@ -217,33 +184,18 @@ class GardenVegetableModel extends GardenVegetable {
     );
   }
 
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'vegetable_id': vegetableId,
-        'vegetable_name': vegetableName,
-        'sow_date': sowDate.toIso8601String(),
-        'sunlight': sunlight?.name,
-        'status': status.name,
-        'created_at': createdAt.toIso8601String(),
-        'updated_at': updatedAt.toIso8601String(),
-        'logs': logs
-            .map((e) => GardenLogModel.fromEntity(e).toJson())
-            .toList(),
-        'reminders': reminders
-            .map((e) => ReminderModel.fromEntity(e).toJson())
-            .toList(),
-      };
+  Map<String, dynamic> toJson() => _$GardenVegetableModelToJson(this);
 
   Map<String, dynamic> toMap() => {
-        'id': id,
-        'vegetable_id': vegetableId,
-        'vegetable_name': vegetableName,
-        'sow_date': sowDate.toIso8601String(),
-        'sunlight': sunlight?.name,
-        'status': status.name,
-        'created_at': createdAt.toIso8601String(),
-        'updated_at': updatedAt.toIso8601String(),
-      };
+    'id': id,
+    'vegetable_id': vegetableId,
+    'vegetable_name': vegetableName,
+    'sow_date': sowDate.toIso8601String(),
+    'sunlight': sunlight?.name,
+    'status': status.name,
+    'created_at': createdAt.toIso8601String(),
+    'updated_at': updatedAt.toIso8601String(),
+  };
 
   factory GardenVegetableModel.fromEntity(GardenVegetable gv) {
     return GardenVegetableModel(
@@ -294,3 +246,23 @@ class GardenVegetableModel extends GardenVegetable {
     );
   }
 }
+
+List<GardenLog> _logsFromJson(List<dynamic>? json) =>
+    json
+        ?.map((item) => GardenLogModel.fromJson(item as Map<String, dynamic>))
+        .toList() ??
+    [];
+
+List<Map<String, dynamic>> _logsToJson(List<GardenLog> logs) =>
+    logs.map((log) => GardenLogModel.fromEntity(log).toJson()).toList();
+
+List<Reminder> _remindersFromJson(List<dynamic>? json) =>
+    json
+        ?.map((item) => ReminderModel.fromJson(item as Map<String, dynamic>))
+        .toList() ??
+    [];
+
+List<Map<String, dynamic>> _remindersToJson(List<Reminder> reminders) =>
+    reminders
+        .map((reminder) => ReminderModel.fromEntity(reminder).toJson())
+        .toList();
