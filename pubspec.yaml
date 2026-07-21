@@ -18,9 +18,6 @@ dependencies:
   sqflite: ^2.4.2
   sqflite_common_ffi: ^2.3.4+5
 
-  # Notifications
-  flutter_local_notifications: ^18.0.1
-
   # File & Path
   path_provider: ^2.1.5
   path: ^1.9.1
@@ -33,9 +30,6 @@ dependencies:
 
   # JSON Serialization
   json_annotation: ^4.11.0
-
-  # Timezone for notifications
-  timezone: ^0.10.0
 
 dev_dependencies:
   flutter_test:
