@@ -32,6 +32,8 @@ dependencies:
   uuid: ^4.5.1
 
   # JSON Serialization
+  # json_serializable 6.9+ 警告 json_annotation 4.11.0 之前版本. 当前锁 4.9.x 够用
+  # (build_runner 仍然能生成), 后续其他 model 落地时一并 bump 到 ^4.11.0
   json_annotation: ^4.9.0
 
   # Timezone for notifications
