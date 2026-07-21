@@ -5,3 +5,4 @@ export 'core_providers.dart';
 export 'vegetable_providers.dart';
 export 'garden_providers.dart';
 export 'city_providers.dart';
+export 'pest_disease_providers.dart';

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_theme.dart';
 import '../../data/models/pest_disease_model.dart';
-import '../../data/datasources/pest_disease_local_datasource.dart';
-import '../../data/models/vegetable_model.dart';
 import '../providers/providers.dart';
 import 'pest_disease_detail_page.dart';
 
@@ -84,7 +82,6 @@ class _PestDiseaseListPageState extends ConsumerState<PestDiseaseListPage> with 
         controller: _tabController,
         labelColor: Colors.white,
         unselectedLabelColor: AppTheme.textSecondary,
-        // indicator handled by indicator
         indicator: BoxDecoration(
           color: AppTheme.primaryGreen,
           borderRadius: BorderRadius.circular(8),
@@ -113,10 +110,11 @@ class _PestDiseaseListPageState extends ConsumerState<PestDiseaseListPage> with 
 class _ByVegetableTab extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final datasource = PestDiseaseLocalDatasource();
+    // T2 重构: 走 repository, 不再直接 new LocalDatasource
+    final repository = ref.watch(pestDiseaseRepositoryProvider);
 
     return FutureBuilder<List<PestDiseaseModel>>(
-      future: datasource.getAllPestDiseases(),
+      future: repository.getAllPestDiseases(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const Center(child: CircularProgressIndicator(color: AppTheme.primaryGreen));
@@ -157,10 +155,11 @@ class _VegetableGroupCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final datasource = ref.watch(vegetableLocalDatasourceProvider);
+    // T2 重构: 走 vegetableRepository (entity), 不再直接 watch LocalDatasource
+    final repository = ref.watch(vegetableRepositoryProvider);
 
-    return FutureBuilder<VegetableModel?>(
-      future: datasource.getVegetableById(vegId),
+    return FutureBuilder(
+      future: repository.getVegetableById(vegId),
       builder: (context, snap) {
         String vegName = vegId;
         String vegEmoji = '🥬';
@@ -227,7 +226,8 @@ class _ByTypeTabState extends ConsumerState<_ByTypeTab> with SingleTickerProvide
 
   @override
   Widget build(BuildContext context) {
-    final datasource = PestDiseaseLocalDatasource();
+    // T2 重构: 走 repository, 不再在 build 中 new LocalDatasource
+    final repository = ref.watch(pestDiseaseRepositoryProvider);
 
     return Column(
       children: [
@@ -242,7 +242,6 @@ class _ByTypeTabState extends ConsumerState<_ByTypeTab> with SingleTickerProvide
             controller: _typeTabController,
             labelColor: Colors.white,
             unselectedLabelColor: AppTheme.textSecondary,
-            // indicator handled by indicator
             indicator: BoxDecoration(
               color: AppTheme.primaryGreen,
               borderRadius: BorderRadius.circular(18),
@@ -260,8 +259,8 @@ class _ByTypeTabState extends ConsumerState<_ByTypeTab> with SingleTickerProvide
           child: TabBarView(
             controller: _typeTabController,
             children: [
-              _DiseaseList(datasource: datasource),
-              _PestList(datasource: datasource),
+              _DiseaseList(repository: repository),
+              _PestList(repository: repository),
             ],
           ),
         ),
@@ -271,13 +270,14 @@ class _ByTypeTabState extends ConsumerState<_ByTypeTab> with SingleTickerProvide
 }
 
 class _DiseaseList extends StatelessWidget {
-  final PestDiseaseLocalDatasource datasource;
-  const _DiseaseList({required this.datasource});
+  // T2 重构: 接收 repository 而不是 datasource
+  final dynamic repository;
+  const _DiseaseList({required this.repository});
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<PestDiseaseModel>>(
-      future: datasource.getByType('disease'),
+      future: repository.getByType('disease'),
       builder: (context, snap) {
         if (!snap.hasData) return const Center(child: CircularProgressIndicator(color: AppTheme.primaryGreen));
         final items = snap.data!;
@@ -293,13 +293,13 @@ class _DiseaseList extends StatelessWidget {
 }
 
 class _PestList extends StatelessWidget {
-  final PestDiseaseLocalDatasource datasource;
-  const _PestList({required this.datasource});
+  final dynamic repository;
+  const _PestList({required this.repository});
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<PestDiseaseModel>>(
-      future: datasource.getByType('pest'),
+      future: repository.getByType('pest'),
       builder: (context, snap) {
         if (!snap.hasData) return const Center(child: CircularProgressIndicator(color: AppTheme.primaryGreen));
         final items = snap.data!;
@@ -340,6 +340,9 @@ class _ByControlModeTabState extends ConsumerState<_ByControlModeTab> with Singl
 
   @override
   Widget build(BuildContext context) {
+    // T2 重构: 走 repository
+    final repository = ref.watch(pestDiseaseRepositoryProvider);
+
     return Column(
       children: [
         SizedBox(
@@ -349,7 +352,6 @@ class _ByControlModeTabState extends ConsumerState<_ByControlModeTab> with Singl
             isScrollable: true,
             labelColor: Colors.white,
             unselectedLabelColor: AppTheme.textSecondary,
-            // indicator handled by indicator
             indicator: BoxDecoration(
               color: AppTheme.primaryGreen,
               borderRadius: BorderRadius.circular(20),
@@ -365,10 +367,10 @@ class _ByControlModeTabState extends ConsumerState<_ByControlModeTab> with Singl
           child: TabBarView(
             controller: _modeTabController,
             children: [
-              _ControlModeList(datasource: PestDiseaseLocalDatasource(), modeIndex: 0),
-              _ControlModeList(datasource: PestDiseaseLocalDatasource(), modeIndex: 1),
-              _ControlModeList(datasource: PestDiseaseLocalDatasource(), modeIndex: 2),
-              _ControlModeList(datasource: PestDiseaseLocalDatasource(), modeIndex: 3),
+              _ControlModeList(repository: repository, modeIndex: 0),
+              _ControlModeList(repository: repository, modeIndex: 1),
+              _ControlModeList(repository: repository, modeIndex: 2),
+              _ControlModeList(repository: repository, modeIndex: 3),
             ],
           ),
         ),
@@ -378,15 +380,16 @@ class _ByControlModeTabState extends ConsumerState<_ByControlModeTab> with Singl
 }
 
 class _ControlModeList extends StatelessWidget {
-  final PestDiseaseLocalDatasource datasource;
+  // T2 重构: 接收 repository
+  final dynamic repository;
   final int modeIndex; // 0=prevention, 1=biological, 2=physical, 3=chemical
 
-  const _ControlModeList({required this.datasource, required this.modeIndex});
+  const _ControlModeList({required this.repository, required this.modeIndex});
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<PestDiseaseModel>>(
-      future: datasource.getAllPestDiseases(),
+      future: repository.getAllPestDiseases(),
       builder: (context, snap) {
         if (!snap.hasData) return const Center(child: CircularProgressIndicator(color: AppTheme.primaryGreen));
 

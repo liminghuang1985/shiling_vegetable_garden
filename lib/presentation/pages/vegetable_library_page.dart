@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/constants/enums.dart';
 import '../../core/theme/app_theme.dart';
-import '../../data/datasources/vegetable_local_datasource.dart';
-import '../../data/models/vegetable_model.dart';
+import '../../domain/entities/vegetable.dart';
 import '../providers/providers.dart';
 import 'vegetable_detail_page.dart';
 
@@ -29,8 +28,6 @@ class _VegetableLibraryPageState extends ConsumerState<VegetableLibraryPage> {
 
   @override
   Widget build(BuildContext context) {
-    final datasource = ref.watch(vegetableLocalDatasourceProvider);
-
     return Scaffold(
       backgroundColor: AppTheme.background,
       body: SafeArea(
@@ -39,7 +36,7 @@ class _VegetableLibraryPageState extends ConsumerState<VegetableLibraryPage> {
             _buildHeader(),
             _buildSearchBar(),
             _buildFilterBar(),
-            Expanded(child: _buildContent(datasource)),
+            Expanded(child: _buildContent()),
           ],
         ),
       ),
@@ -189,9 +186,11 @@ class _VegetableLibraryPageState extends ConsumerState<VegetableLibraryPage> {
     );
   }
 
-  Widget _buildContent(VegetableLocalDatasource datasource) {
-    return FutureBuilder<List<VegetableModel>>(
-      future: datasource.getAllVegetables(),
+  Widget _buildContent() {
+    // T2 重构: 走 VegetableRepository, 不再直接 watch LocalDatasource
+    final repository = ref.watch(vegetableRepositoryProvider);
+    return FutureBuilder<List<Vegetable>>(
+      future: repository.getAllVegetables(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
@@ -285,7 +284,7 @@ class _VegetableLibraryPageState extends ConsumerState<VegetableLibraryPage> {
     );
   }
 
-  Widget _buildListView(List<VegetableModel> vegetables) {
+  Widget _buildListView(List<Vegetable> vegetables) {
     return ListView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       itemCount: vegetables.length,
@@ -296,7 +295,7 @@ class _VegetableLibraryPageState extends ConsumerState<VegetableLibraryPage> {
     );
   }
 
-  Widget _buildListTile(VegetableModel veg) {
+  Widget _buildListTile(Vegetable veg) {
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
@@ -344,7 +343,7 @@ class _VegetableLibraryPageState extends ConsumerState<VegetableLibraryPage> {
     );
   }
 
-  Widget _buildGridView(List<VegetableModel> vegetables) {
+  Widget _buildGridView(List<Vegetable> vegetables) {
     return GridView.builder(
       padding: const EdgeInsets.all(16),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -361,7 +360,7 @@ class _VegetableLibraryPageState extends ConsumerState<VegetableLibraryPage> {
     );
   }
 
-  Widget _buildGridCard(VegetableModel veg) {
+  Widget _buildGridCard(Vegetable veg) {
     return InkWell(
       onTap: () => _navigateToDetail(veg),
       borderRadius: BorderRadius.circular(16),
@@ -408,11 +407,11 @@ class _VegetableLibraryPageState extends ConsumerState<VegetableLibraryPage> {
     );
   }
 
-  void _navigateToDetail(VegetableModel veg) {
+  void _navigateToDetail(Vegetable veg) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => VegetableDetailPage(vegetable: veg.toEntity()),
+        builder: (_) => VegetableDetailPage(vegetable: veg),
       ),
     );
   }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_theme.dart';
 import '../../data/models/pest_disease_model.dart';
-import '../../data/models/vegetable_model.dart';
 import '../providers/providers.dart';
 import 'vegetable_detail_page.dart';
 
@@ -357,25 +356,28 @@ class _VegLinkChip extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final datasource = ref.watch(vegetableLocalDatasourceProvider);
+    // T2 重构: 走 vegetableRepository (entity), 不再直接 watch LocalDatasource
+    final repository = ref.watch(vegetableRepositoryProvider);
+    final vegFuture = repository.getVegetableById(vegId);
 
-    return FutureBuilder<VegetableModel?>(
-      future: datasource.getVegetableById(vegId),
+    return FutureBuilder(
+      future: vegFuture,
       builder: (context, snap) {
         String name = vegId;
         String emoji = '🥬';
-        if (snap.hasData && snap.data != null) {
-          name = snap.data!.name;
-          emoji = snap.data!.emoji;
+        final vegetable = snap.data;
+        if (vegetable != null) {
+          name = vegetable.name;
+          emoji = vegetable.emoji;
         }
 
         return InkWell(
           onTap: () async {
-            if (snap.hasData && snap.data != null) {
+            if (vegetable != null) {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => VegetableDetailPage(vegetable: snap.data!.toEntity()),
+                  builder: (_) => VegetableDetailPage(vegetable: vegetable),
                 ),
               );
             }
