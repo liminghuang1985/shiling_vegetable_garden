@@ -3,6 +3,7 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import '../../core/constants/db_constants.dart';
+import '../../core/utils/logger.dart';
 
 /// 数据库初始化和辅助类
 class DatabaseHelper {
@@ -70,17 +71,20 @@ class DatabaseHelper {
   }
 
   /// 升级数据库
+  /// T7: 填实迁移脚手架. 任何 schema 变更必须在此处加迁移逻辑.
+  /// 当前 DbNames.version=1, 无迁移历史.
+  /// 升级示例: 升 v2 时, 加 `2: [(db) async { await db.execute('ALTER TABLE ...'); }]`
   Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
-    // 迁移映射表：旧版本 -> 迁移处理器列表
+    // 迁移映射表: 旧版本 -> 迁移处理器列表
+    // ⚠️ 升级 schema 必填, 否则老用户从旧版本升级会启动崩溃
     final migrations = <int, List<Future<void> Function(Database)>>{
-      // 未来版本示例：
+      // ===== 模板: 升 v2 时填这里 =====
       // 2: [
-      //   (db) async { await db.execute('ALTER TABLE vegetables ADD COLUMN new_col TEXT'); },
+      //   (db) async {
+      //     await db.execute('ALTER TABLE vegetables ADD COLUMN new_field TEXT');
+      //   },
       // ],
-      // 3: [
-      //   (db) async { await db.execute('CREATE TABLE new_table (...)'); },
-      //   (db) async { await _migrateToV3(db); },
-      // ],
+      // ===== 模板结束 =====
     };
 
     for (int version = oldVersion; version < newVersion; version++) {
@@ -88,8 +92,10 @@ class DatabaseHelper {
       if (handlers != null) {
         for (final migrate in handlers) {
           await migrate(db);
-          print('=== DB migration v$version executed ===');
+          AppLogger.i('DB migration v$version executed');
         }
+      } else if (version > oldVersion) {
+        AppLogger.w('No migration handler for v$version → v${version + 1}. 老用户可能崩溃!');
       }
     }
   }

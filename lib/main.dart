@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'app.dart';
 import 'core/constants/enums.dart';
+import 'core/utils/logger.dart';
 import 'data/models/city_model.dart';
 import 'domain/entities/city.dart';
 import 'presentation/providers/providers.dart';
@@ -73,8 +74,7 @@ void main() async {
       ),
     );
   } catch (e, st) {
-    debugPrint('=== APP INIT ERROR: $e ===');
-    debugPrint('=== STACK: $st ===');
+    AppLogger.e('APP INIT ERROR', error: e, stackTrace: st);
     runApp(
       MaterialApp(
         home: Scaffold(

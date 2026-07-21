@@ -4,6 +4,7 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import '../core/constants/enums.dart';
 import '../core/constants/db_constants.dart';
 import '../core/constants/app_constants.dart';
+import '../core/utils/logger.dart';
 import 'datasources/database_helper.dart';
 import 'models/city_model.dart';
 import 'models/vegetable_model.dart';
@@ -24,7 +25,8 @@ class DataSeeder {
         await _seedVegetables();
         await _seedPlantingCalendar();
       }
-    } catch (e) {
+    } catch (e, st) {
+      AppLogger.e('DataSeeder.seedIfNeeded failed', error: e, stackTrace: st);
       // Continue anyway - don't crash the app
     }
   }
@@ -64,13 +66,14 @@ class DataSeeder {
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
     }
+    AppLogger.i('_seedCities: ${cities.length} cities inserted');
   }
 
   /// 播种蔬菜数据
   Future<void> _seedVegetables() async {
     final jsonString = await rootBundle.loadString('assets/data/vegetables.json');
     final List<dynamic> jsonList = json.decode(jsonString);
-    print('=== _seedVegetables: loaded ${jsonList.length} vegetables from JSON ===');
+    AppLogger.i('_seedVegetables: loaded ${jsonList.length} vegetables from JSON');
 
     final db = await _dbHelper.database;
     final List<String> failedIds = [];
@@ -84,9 +87,8 @@ class DataSeeder {
             vegetable.toMap(),
             conflictAlgorithm: ConflictAlgorithm.replace,
           );
-          print('=== seeded: ${vegetable.name} (${vegetable.id}) ===');
         } catch (e) {
-          print('=== FAILED to seed vegetable: $item === ERROR: $e ===');
+          AppLogger.w('FAILED to seed vegetable: ${item['id']}', error: e);
           failedIds.add(item['id']?.toString() ?? 'unknown');
         }
       }
@@ -94,7 +96,7 @@ class DataSeeder {
 
     // 验证
     final count = (await db.query('vegetables')).length;
-    print('=== _seedVegetables: total vegetables in DB: $count ===');
+    AppLogger.i('_seedVegetables: total vegetables in DB: $count');
 
     if (failedIds.isNotEmpty) {
       throw Exception('蔬菜数据播种失败，共 ${failedIds.length} 条: ${failedIds.join(", ")}');
@@ -145,5 +147,6 @@ class DataSeeder {
         );
       }
     }
+    AppLogger.i('_seedPlantingCalendar: completed');
   }
 }
