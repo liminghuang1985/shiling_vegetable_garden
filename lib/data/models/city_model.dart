@@ -1,7 +1,11 @@
 import '../../domain/entities/city.dart';
 import '../../core/constants/enums.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'city_model.g.dart';
 
 /// 城市数据模型 - 支持 JSON 序列化
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: false)
 class CityModel extends City {
   const CityModel({
     super.id,
@@ -11,14 +15,16 @@ class CityModel extends City {
   });
 
   /// 从 JSON 解析
-  factory CityModel.fromJson(Map<String, dynamic> json) {
-    return CityModel(
-      id: json['id'] as int?,
-      name: json['name'] as String,
-      province: json['province'] as String,
-      climate: ClimateZone.fromString(json['climate_zone'] as String) ?? ClimateZone.warmTemperate,
-    );
-  }
+  factory CityModel.fromJson(Map<String, dynamic> json) =>
+      _$CityModelFromJson(json);
+
+  @JsonKey(
+    name: 'climate_zone',
+    fromJson: _climateFromJson,
+    toJson: _climateToJson,
+  )
+  @override
+  ClimateZone get climate => super.climate;
 
   /// 从数据库 Map 解析
   factory CityModel.fromMap(Map<String, dynamic> map) {
@@ -26,19 +32,14 @@ class CityModel extends City {
       id: map['id'] as int?,
       name: map['name'] as String,
       province: map['province'] as String,
-      climate: ClimateZone.fromString(map['climate_zone'] as String) ?? ClimateZone.warmTemperate,
+      climate:
+          ClimateZone.fromString(map['climate_zone'] as String) ??
+          ClimateZone.warmTemperate,
     );
   }
 
   /// 转换为 JSON
-  Map<String, dynamic> toJson() {
-    return {
-      if (id != null) 'id': id,
-      'name': name,
-      'province': province,
-      'climate_zone': climate.name,
-    };
-  }
+  Map<String, dynamic> toJson() => _$CityModelToJson(this);
 
   /// 转换为数据库 Map
   Map<String, dynamic> toMap() {
@@ -62,11 +63,11 @@ class CityModel extends City {
 
   /// 转换为实体
   City toEntity() {
-    return City(
-      id: id,
-      name: name,
-      province: province,
-      climate: climate,
-    );
+    return City(id: id, name: name, province: province, climate: climate);
   }
 }
+
+ClimateZone _climateFromJson(String value) =>
+    ClimateZone.fromString(value) ?? ClimateZone.warmTemperate;
+
+String _climateToJson(ClimateZone climate) => climate.name;
