@@ -15,6 +15,7 @@ class GardenLocalDatasource {
   Future<Database> get _db => _dbHelper.database;
 
   /// 获取用户所有菜园蔬菜
+  /// N+1 优化: 一次性拿全部 logs/reminders, group by garden_id, 避免 N*2 次循环查询
   Future<List<GardenVegetableModel>> getAllGardenVegetables() async {
     final db = await _db;
     final List<Map<String, dynamic>> maps = await db.query(
@@ -22,16 +23,7 @@ class GardenLocalDatasource {
       orderBy: 'created_at DESC',
     );
 
-    final List<GardenVegetableModel> results = [];
-    for (final map in maps) {
-      final model = GardenVegetableModel.fromMap(map);
-      // 附加日志和提醒
-      final logs = await getGardenLogs(model.id);
-      final reminders = await getReminders(model.id);
-      results.add(model.copyWithLogsAndReminders(logs: logs, reminders: reminders));
-    }
-
-    return results;
+    return _attachLogsAndRemindersBatch(maps);
   }
 
   /// 获取指定状态的菜园蔬菜
@@ -44,15 +36,7 @@ class GardenLocalDatasource {
       orderBy: 'created_at DESC',
     );
 
-    final List<GardenVegetableModel> results = [];
-    for (final map in maps) {
-      final model = GardenVegetableModel.fromMap(map);
-      final logs = await getGardenLogs(model.id);
-      final reminders = await getReminders(model.id);
-      results.add(model.copyWithLogsAndReminders(logs: logs, reminders: reminders));
-    }
-
-    return results;
+    return _attachLogsAndRemindersBatch(maps);
   }
 
   /// 获取菜园蔬菜详情
@@ -66,12 +50,53 @@ class GardenLocalDatasource {
     );
 
     if (maps.isEmpty) return null;
+    final results = await _attachLogsAndRemindersBatch(maps);
+    return results.first;
+  }
 
-    final model = GardenVegetableModel.fromMap(maps.first);
-    final logs = await getGardenLogs(model.id);
-    final reminders = await getReminders(model.id);
+  /// 把 my_garden 行批量附加日志和提醒 (1+2 次 query, 不论 N 多大)
+  Future<List<GardenVegetableModel>> _attachLogsAndRemindersBatch(
+    List<Map<String, dynamic>> gardenMaps,
+  ) async {
+    if (gardenMaps.isEmpty) return [];
+    final db = await _db;
 
-    return model.copyWithLogsAndReminders(logs: logs, reminders: reminders);
+    final gardenIds = gardenMaps.map((m) => m['id'] as String).toList();
+    // 用占位符 '?, ?, ?' 避免 SQL 注入
+    final placeholders = List.filled(gardenIds.length, '?').join(',');
+
+    final logMaps = await db.query(
+      DbTables.gardenLogs,
+      where: 'garden_id IN ($placeholders)',
+      whereArgs: gardenIds,
+      orderBy: 'date DESC',
+    );
+    final reminderMaps = await db.query(
+      DbTables.reminders,
+      where: 'garden_id IN ($placeholders)',
+      whereArgs: gardenIds,
+      orderBy: 'time ASC',
+    );
+
+    // group by garden_id
+    final logsByGarden = <String, List<GardenLogModel>>{};
+    for (final m in logMaps) {
+      final log = GardenLogModel.fromMap(m);
+      logsByGarden.putIfAbsent(log.gardenId, () => []).add(log);
+    }
+    final remindersByGarden = <String, List<ReminderModel>>{};
+    for (final m in reminderMaps) {
+      final r = ReminderModel.fromMap(m);
+      remindersByGarden.putIfAbsent(r.gardenId, () => []).add(r);
+    }
+
+    return gardenMaps.map((map) {
+      final model = GardenVegetableModel.fromMap(map);
+      return model.copyWithLogsAndReminders(
+        logs: logsByGarden[model.id] ?? const [],
+        reminders: remindersByGarden[model.id] ?? const [],
+      );
+    }).toList();
   }
 
   /// 添加蔬菜到菜园
